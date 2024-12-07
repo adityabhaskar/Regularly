@@ -7,6 +7,7 @@ minSdk = "29"
 
 kotlin = "2.0.21"
 ksp = "2.1.0-1.0.29" # This is part coupled with kotlin version
+ktlint = "1.5.0"
 
 core = "1.15.0"
 lifecycle-runtime = "2.8.7"
@@ -21,7 +22,7 @@ junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 testparameterinjector = "1.18"
 
-spotless = "6.25.0"
+spotless = "7.0.0.BETA4"
 lint-gradle = "1.0.0-alpha02"
 conventions = "1.0"
 
@@ -59,7 +60,6 @@ testParameterInjector = { group = "com.google.testparameterinjector", name = "te
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 composeCompiler-gradlePlugin = { group = "org.jetbrains.kotlin", name = "compose-compiler-gradle-plugin", version.ref = "kotlin" }
-#spotless-gradlePlugin = { group = "io.gitlab.arturbosch.spotless", name = "spotless-gradle-plugin", version.ref = "spotless" }
 
 [plugins]
 agp-application = { id = "com.android.application", version.ref = "agp" }

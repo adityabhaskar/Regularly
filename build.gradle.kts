@@ -15,3 +15,30 @@ plugins {
     alias(libs.plugins.compose.library) apply false
     alias(libs.plugins.hilt) apply false
 }
+
+allprojects {
+    apply<com.diffplug.gradle.spotless.SpotlessPlugin>()
+    extensions.configure<com.diffplug.gradle.spotless.SpotlessExtension> {
+        format("misc") {
+            // define the files to apply `misc` to
+            target ("*.gradle", ".gitattributes", ".gitignore")
+
+            // define the steps to apply to those files
+            trimTrailingWhitespace()
+            indentWithSpaces()
+        }
+        kotlin {
+            target("**/*.kt")
+            targetExclude("**/build/**/*.kt")
+            ktlint(libs.versions.ktlint.get())
+        }
+        format("kts") {
+            target("**/*.kts")
+            targetExclude("**/build/**/*.kts")
+        }
+        format("xml") {
+            target("**/*.xml")
+            targetExclude("**/build/**/*.xml")
+        }
+    }
+}
