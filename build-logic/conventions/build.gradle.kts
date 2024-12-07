@@ -52,10 +52,10 @@ gradlePlugin {
             implementationClass = "net.c306.conventions.plugins.ComposeApplicationConventionPlugin"
             version = "1.0"
         }
-//        register("hilt") {
-//            id = "net.c306.hilt"
-//            implementationClass = "net.c306.conventions.plugins.HiltConventionPlugin"
-//            version = "1.0
-//        }
+        register("hilt") {
+            id = "net.c306.hilt"
+            implementationClass = "net.c306.conventions.plugins.HiltConventionPlugin"
+            version = "1.0"
+        }
     }
 }
