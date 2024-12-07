@@ -21,6 +21,7 @@ junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 testparameterinjector = "1.18"
 
+spotless = "6.25.0"
 lint-gradle = "1.0.0-alpha02"
 conventions = "1.0"
 
@@ -70,6 +71,7 @@ google-hilt = { id = "com.google.dagger.hilt.android", version.ref = "google-hil
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
 android-lint = { id = "com.android.lint", version.ref = "agp" }
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 
 application = { id = "net.c306.application", version.ref = "conventions" }
 library-android = { id = "net.c306.library.android", version.ref = "conventions" }

@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.jetbrains.compose) apply false
     alias(libs.plugins.google.hilt) apply false
     alias(libs.plugins.ksp) apply false
+    alias(libs.plugins.spotless) apply false
 
     alias(libs.plugins.application) apply false
     alias(libs.plugins.library.android) apply false
