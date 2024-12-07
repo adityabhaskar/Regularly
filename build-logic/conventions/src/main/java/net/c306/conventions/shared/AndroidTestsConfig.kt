@@ -9,14 +9,9 @@ import org.gradle.kotlin.dsl.invoke
 /**
  * Provides AndroidTest dependencies, and sets up Gradle Managed devices to run tests on CI.
  */
-internal fun Project.configureAndroidTests(
-    extension: CommonExtension<*, *, *, *, *, *>,
-    isTestModule: Boolean = false,
-) {
+internal fun Project.configureAndroidTests(extension: CommonExtension<*, *, *, *, *, *>) {
     with(extension) {
-        if (!isTestModule) {
-            configureGradleManagedDevices()
-        }
+        configureGradleManagedDevices()
 
         defaultConfig {
             testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -24,12 +19,9 @@ internal fun Project.configureAndroidTests(
     }
 
     dependencies {
-        val configuration = if (isTestModule) "implementation" else "androidTestImplementation"
-        add(configuration, libs.findLibrary("androidx-junit-ktx").get())
-        add(configuration, libs.findLibrary("kotlin-test-junit").get())
-        add(configuration, libs.findLibrary("androidx-test-runner").get())
-        add(configuration, libs.findLibrary("androidx-test-rules").get())
-        add(configuration, libs.findLibrary("androidx-test-core").get())
+        val configuration = "androidTestImplementation"
+        add(configuration, libs.findLibrary("junit").get())
+        add(configuration, libs.findLibrary("androidx.espresso.core").get())
     }
 }
 
@@ -42,7 +34,7 @@ private fun CommonExtension<*, *, *, *, *, *>.configureGradleManagedDevices() {
             devices {
                 maybeCreate("ciDevice", ManagedVirtualDevice::class.java).apply {
                     // Use device profiles you typically see in Android Studio.
-                    device = "Pixel 2"
+                    device = "Pixel 5"
                     // Use only API levels 27 and higher.
                     apiLevel = 30
                     // To include Google services, use the "google"/"google-atd" variants

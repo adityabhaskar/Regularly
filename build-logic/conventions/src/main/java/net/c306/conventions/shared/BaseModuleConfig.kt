@@ -1,7 +1,6 @@
 package net.c306.conventions.shared
 
 import com.android.build.api.dsl.CommonExtension
-import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalog
 import org.gradle.api.artifacts.VersionCatalogsExtension
@@ -9,12 +8,10 @@ import org.gradle.kotlin.dsl.assign
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
-import org.gradle.kotlin.dsl.project
 import org.gradle.kotlin.dsl.provideDelegate
 import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinTopLevelExtension
-import kotlin.collections.set
 
 /**
  * The Version Catalog.
@@ -29,32 +26,17 @@ internal val Project.libs
 internal inline fun <reified T : KotlinTopLevelExtension> Project.configureAndroidModule(
     extension: CommonExtension<*, *, *, *, *, *>,
 ) {
-    val javaVersion = JavaVersion.toVersion(
-        libs.findVersion("java").get().toString().toInt(),
-    )
-
     extension.apply {
         defaultConfig {
-            minSdk = libs.findVersion("minsdk").get().toString().toInt()
-            compileSdk = libs.findVersion("compilesdk").get().toString().toInt()
-
-            // for current okta version (oidc connect)
-            manifestPlaceholders["appAuthRedirectScheme"] = ""
-
-            // for when we implement the latest okta version (okta-mobile-kotlin)
-            manifestPlaceholders["webAuthenticationRedirectScheme"] = ""
-        }
-
-        compileOptions {
-            sourceCompatibility = javaVersion
-            targetCompatibility = javaVersion
+            minSdk = libs.findVersion("minSdk").get().toString().toInt()
+            compileSdk = libs.findVersion("compileSdk").get().toString().toInt()
         }
 
         addBaseDependencies<T>()
 
         dependencies {
-            add("lintChecks", project(path = ":checks"))
-            add("implementation", libs.findLibrary("jakewharton-timber").get())
+//            add("lintChecks", project(path = ":checks"))
+//            add("implementation", libs.findLibrary("jakewharton-timber").get())
         }
     }
 }
@@ -64,8 +46,11 @@ internal inline fun <reified T : KotlinTopLevelExtension> Project.configureAndro
  */
 internal inline fun <reified T : KotlinTopLevelExtension> Project.addBaseDependencies() {
     dependencies {
-        add("implementation", libs.findLibrary("kotlin-stdlib").get())
-        add("implementation", libs.findLibrary("javax-inject").get())
+        add("implementation", libs.findLibrary("kotlin.stdlib").get())
+        add("implementation", libs.findLibrary("javax.inject").get())
+        add("testImplementation", libs.findLibrary("junit").get())
+        add("testImplementation", libs.findLibrary("testParameterInjector").get())
+        add("implementation", libs.findLibrary("kotlinx.collections.immutable").get())
     }
     setupKotlinCompilerOptions<T>()
 }
@@ -78,10 +63,11 @@ private inline fun <reified T : KotlinTopLevelExtension> Project.setupKotlinComp
             else -> TODO("Unsupported project extension $this ${T::class}")
         }.apply {
             jvmToolchain(libs.findVersion("java").get().toString().toInt())
+
             val warningsAsErrors: String? by project
             allWarningsAsErrors = warningsAsErrors.toBoolean()
+
             freeCompilerArgs.addAll(
-                // Suggested by Braze SDK integration guide, for further information:
                 // https://kotlinlang.org/docs/java-to-kotlin-interop.html#default-methods-in-interfaces
                 "-Xjvm-default=all",
                 "-opt-in=kotlin.RequiresOptIn",

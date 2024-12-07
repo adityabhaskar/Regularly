@@ -1,5 +1,6 @@
 plugins {
     `kotlin-dsl`
+    alias(libs.plugins.android.lint)
 }
 
 group = "net.c306.regularly"
@@ -18,26 +19,43 @@ tasks {
 
 dependencies {
     compileOnly(libs.android.gradlePlugin)
+    compileOnly(libs.composeCompiler.gradlePlugin)
     compileOnly(libs.kotlin.gradlePlugin)
 
+    lintChecks(libs.androidx.lint.gradle)
 }
 
 gradlePlugin {
     plugins {
         register("androidApplicationPlugin") {
             id = "net.c306.application"
-            implementationClass = "net.c306.conventions.AndroidApplicationConventionPlugin"
+            implementationClass = "net.c306.conventions.plugins.AndroidApplicationConventionPlugin"
             version = "1.0"
         }
         register("androidLibraryPlugin") {
             id = "net.c306.library.android"
-            implementationClass = "net.c306.conventions.AndroidLibraryConventionPlugin"
+            implementationClass = "net.c306.conventions.plugins.AndroidLibraryConventionPlugin"
             version = "1.0"
         }
         register("kotlinLibraryPlugin") {
             id = "net.c306.library.kotlin"
-            implementationClass = "net.c306.conventions.KotlinLibraryConventionPlugin"
+            implementationClass = "net.c306.conventions.plugins.KotlinLibraryConventionPlugin"
             version = "1.0"
         }
+        register("composeLibrary") {
+            id = "net.c306.compose.library"
+            implementationClass = "net.c306.conventions.plugins.ComposeLibraryConventionPlugin"
+            version = "1.0"
+        }
+        register("composeApplication") {
+            id = "net.c306.compose.application"
+            implementationClass = "net.c306.conventions.plugins.ComposeApplicationConventionPlugin"
+            version = "1.0"
+        }
+//        register("hilt") {
+//            id = "net.c306.hilt"
+//            implementationClass = "net.c306.conventions.plugins.HiltConventionPlugin"
+//            version = "1.0
+//        }
     }
 }

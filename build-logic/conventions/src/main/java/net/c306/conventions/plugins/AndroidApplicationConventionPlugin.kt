@@ -23,17 +23,13 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             with(pluginManager) {
-                apply("com.android.application")
-                apply("org.jetbrains.kotlin.android")
-                apply("org.jmailen.kotlinter")
+                apply(libs.findPlugin("agp.application").get().get().pluginId)
+                apply(libs.findPlugin("kgp.android").get().get().pluginId)
             }
-
-            // Uses too much heap memory so disabled for now.
-//            setupDetekt()
 
             extensions.configure<ApplicationExtension> {
                 defaultConfig {
-                    targetSdk = libs.findVersion("targetsdk").get().toString().toInt()
+                    targetSdk = libs.findVersion("targetSdk").get().toString().toInt()
                 }
 
                 configureAndroidModule<KotlinAndroidProjectExtension>(this)

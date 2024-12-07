@@ -22,8 +22,6 @@ class KotlinLibraryConventionPlugin : Plugin<Project> {
                 apply("jvm-module-test")
                 apply("org.jmailen.kotlinter")
 
-//                setupDetekt()
-
                 if (hasTestFixtures()) {
                     apply("java-test-fixtures")
                 }

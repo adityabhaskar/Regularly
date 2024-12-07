@@ -2,47 +2,66 @@
 agp = "8.7.3"
 kotlin = "2.0.21"
 java = "21"
+targetSdk = "35"
+compileSdk = "35"
+minSdk = "29"
 
 core = "1.15.0"
 lifecycle-runtime = "2.8.7"
 activityCompose = "1.9.3"
 compose = "2024.11.00"
+kotlinx-collections-immutable = "0.3.7"
 
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
+testparameterinjector = "1.18"
 
+lint-gradle = "1.0.0-alpha02"
 conventions = "1.0"
 
 [libraries]
 androidx-core = { group = "androidx.core", name = "core-ktx", version.ref = "core" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
-androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
-androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose" }
-androidx-lifecycle-runtime = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle-runtime" }
+androidx-compose-animation = { group = "androidx.compose.animation", name = "animation" }
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
-androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-compose-material3-windowSize = { group = "androidx.compose.material3", name = "material3-window-size-class" }
+androidx-lifecycle-runtime = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle-runtime" }
+androidx-lint-gradle = { module = "androidx.lint:lint-gradle", version.ref = "lint-gradle" }
+kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
+kotlinx-collections-immutable = { group = "org.jetbrains.kotlinx", name = "kotlinx-collections-immutable", version.ref = "kotlinx-collections-immutable" }
+javax-inject = { group = "javax.inject", name = "javax.inject", version = "1" }
+
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+testParameterInjector = { group = "com.google.testparameterinjector", name = "test-parameter-injector", version.ref = "testparameterinjector" }
 
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+composeCompiler-gradlePlugin = { group = "org.jetbrains.kotlin", name = "compose-compiler-gradle-plugin", version.ref = "kotlin" }
+#spotless-gradlePlugin = { group = "io.gitlab.arturbosch.spotless", name = "spotless-gradle-plugin", version.ref = "spotless" }
 
 [plugins]
 agp-application = { id = "com.android.application", version.ref = "agp" }
 agp-library = { id = "com.android.library", version.ref = "agp" }
 kgp-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kgp-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+jetbrains-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
-conventions-application = { id = "net.c306.application", version.ref = "conventions" }
-conventions-library-android = { id = "net.c306.library.android", version.ref = "conventions" }
-conventions-library-kotlin = { id = "net.c306.library.kotlin", version.ref = "conventions" }
-conventions-compose-library = { id = "net.c306.compose.library", version.ref = "conventions" }
-conventions-compose-application = { id = "net.c306.compose.application", version.ref = "conventions" }
+android-lint = { id = "com.android.lint", version.ref = "agp" }
+
+application = { id = "net.c306.application", version.ref = "conventions" }
+library-android = { id = "net.c306.library.android", version.ref = "conventions" }
+library-kotlin = { id = "net.c306.library.kotlin", version.ref = "conventions" }
+compose-library = { id = "net.c306.compose.library", version.ref = "conventions" }
+compose-application = { id = "net.c306.compose.application", version.ref = "conventions" }
+#conventions-hilt = { id = "net.c306.hilt", version.ref = "conventions" }
