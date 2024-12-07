@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.agp.application)
-    alias(libs.plugins.kgp)
+    alias(libs.plugins.kgp.android)
     alias(libs.plugins.compose)
 }
 
@@ -30,7 +30,7 @@ android {
 }
 
 kotlin {
-    jvmToolchain(21)
+    jvmToolchain(libs.versions.java.get().toInt())
 }
 
 dependencies {
