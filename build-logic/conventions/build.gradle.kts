@@ -3,6 +3,7 @@ plugins {
 }
 
 group = "net.c306.regularly"
+version = "1.0"
 
 kotlin {
     jvmToolchain(libs.versions.java.get().toInt())
@@ -23,21 +24,20 @@ dependencies {
 
 gradlePlugin {
     plugins {
-        // TODO: 07/12/2024 Create plugins here
         register("androidApplicationPlugin") {
             id = "net.c306.application"
             implementationClass = "net.c306.conventions.AndroidApplicationConventionPlugin"
-            version = "1"
+            version = "1.0"
         }
         register("androidLibraryPlugin") {
             id = "net.c306.library.android"
             implementationClass = "net.c306.conventions.AndroidLibraryConventionPlugin"
-            version = "1"
+            version = "1.0"
         }
         register("kotlinLibraryPlugin") {
             id = "net.c306.library.kotlin"
             implementationClass = "net.c306.conventions.KotlinLibraryConventionPlugin"
-            version = "1"
+            version = "1.0"
         }
     }
 }
