@@ -32,7 +32,6 @@ internal inline fun <reified T : KotlinTopLevelExtension> Project.configureAndro
     }
 }
 
-
 internal fun Project.isJvmModule(): Boolean {
     plugins.forEach {
         if (it is JavaPlugin) return true
