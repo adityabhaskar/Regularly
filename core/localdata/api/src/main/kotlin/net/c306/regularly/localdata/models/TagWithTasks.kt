@@ -7,16 +7,16 @@ import androidx.room.Relation
 /**
  * Storage data model for a task including its tags.
  */
-data class Task(
-    @Embedded val task: TaskEntity,
+data class TagWithTasks(
+    @Embedded val tag: TagEntity,
     @Relation(
         parentColumn = "_id",
         entityColumn = "_id",
         associateBy = Junction(
             value = TaskAndTagEntity::class,
-            parentColumn = "taskid",
-            entityColumn = "tagid",
+            parentColumn = "tagid",
+            entityColumn = "taskid",
         ),
     )
-    val tags: List<TagEntity>,
+    val tasks: List<TaskEntity>,
 )
