@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "8ef519e0c17c13370ce15ae5355fb01e",
+    "identityHash": "5fb6cac484bd734ff1be4d57567c9b26",
     "entities": [
       {
         "tableName": "tasks",
@@ -118,7 +118,7 @@
       },
       {
         "tableName": "taskTags",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `taskid` INTEGER NOT NULL, `tagid` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER NOT NULL, `taskid` INTEGER NOT NULL, `tagid` INTEGER NOT NULL, PRIMARY KEY(`taskid`, `tagid`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -140,12 +140,32 @@
           }
         ],
         "primaryKey": {
-          "autoGenerate": true,
+          "autoGenerate": false,
           "columnNames": [
-            "_id"
+            "taskid",
+            "tagid"
           ]
         },
-        "indices": [],
+        "indices": [
+          {
+            "name": "index_taskTags_taskid",
+            "unique": false,
+            "columnNames": [
+              "taskid"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_taskTags_taskid` ON `${TABLE_NAME}` (`taskid`)"
+          },
+          {
+            "name": "index_taskTags_tagid",
+            "unique": false,
+            "columnNames": [
+              "tagid"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_taskTags_tagid` ON `${TABLE_NAME}` (`tagid`)"
+          }
+        ],
         "foreignKeys": []
       },
       {
@@ -183,7 +203,17 @@
             "_id"
           ]
         },
-        "indices": [],
+        "indices": [
+          {
+            "name": "index_log_taskid",
+            "unique": false,
+            "columnNames": [
+              "taskid"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_log_taskid` ON `${TABLE_NAME}` (`taskid`)"
+          }
+        ],
         "foreignKeys": [
           {
             "table": "tasks",
@@ -202,7 +232,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8ef519e0c17c13370ce15ae5355fb01e')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5fb6cac484bd734ff1be4d57567c9b26')"
     ]
   }
 }

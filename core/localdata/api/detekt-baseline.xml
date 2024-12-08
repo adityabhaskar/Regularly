@@ -4,18 +4,20 @@
   <CurrentIssues>
     <ID>UndocumentedPublicProperty:EntryEntity.kt$EntryEntity$@ColumnInfo(name = "entrydate") val completedDate: LocalDate</ID>
     <ID>UndocumentedPublicProperty:EntryEntity.kt$EntryEntity$@ColumnInfo(name = "note") val notes: String</ID>
-    <ID>UndocumentedPublicProperty:EntryEntity.kt$EntryEntity$@ColumnInfo(name = "taskid") val taskId: Int</ID>
-    <ID>UndocumentedPublicProperty:EntryEntity.kt$EntryEntity$@PrimaryKey(autoGenerate = true) @ColumnInfo(name = "_id") val id: Long</ID>
+    <ID>UndocumentedPublicProperty:EntryEntity.kt$EntryEntity$@ColumnInfo(name = "taskid", index = true) val taskId: Int</ID>
+    <ID>UndocumentedPublicProperty:EntryEntity.kt$EntryEntity$@PrimaryKey(autoGenerate = true) @ColumnInfo(name = "_id") val id: Long = 0</ID>
     <ID>UndocumentedPublicProperty:Tag.kt$Tag$@Embedded val tag: TagEntity</ID>
     <ID>UndocumentedPublicProperty:Tag.kt$Tag$@Relation( parentColumn = "_id", entityColumn = "tagid", ) val tasks: List&lt;TaskEntity&gt;</ID>
     <ID>UndocumentedPublicProperty:TagEntity.kt$TagEntity$@ColumnInfo(name = "position") val order: Int</ID>
     <ID>UndocumentedPublicProperty:TagEntity.kt$TagEntity$@ColumnInfo(name = "tagname") val name: String</ID>
-    <ID>UndocumentedPublicProperty:TagEntity.kt$TagEntity$@PrimaryKey(autoGenerate = true) @ColumnInfo(name = "_id") val id: Long</ID>
+    <ID>UndocumentedPublicProperty:TagEntity.kt$TagEntity$@PrimaryKey(autoGenerate = true) @ColumnInfo(name = "_id") val id: Long = 0</ID>
+    <ID>UndocumentedPublicProperty:TagWithTasks.kt$TagWithTasks$@Embedded val tag: TagEntity</ID>
+    <ID>UndocumentedPublicProperty:TagWithTasks.kt$TagWithTasks$@Relation( parentColumn = "_id", entityColumn = "_id", associateBy = Junction( value = TaskAndTagEntity::class, parentColumn = "tagid", entityColumn = "taskid", ), ) val tasks: List&lt;TaskEntity&gt;</ID>
     <ID>UndocumentedPublicProperty:Task.kt$Task$@Embedded val task: TaskEntity</ID>
-    <ID>UndocumentedPublicProperty:Task.kt$Task$@Relation( parentColumn = "_id", entityColumn = "taskid", ) val tags: List&lt;TagEntity&gt;</ID>
-    <ID>UndocumentedPublicProperty:TaskAndTagEntity.kt$TaskAndTagEntity$@ColumnInfo("tagid") val tagId: Int</ID>
-    <ID>UndocumentedPublicProperty:TaskAndTagEntity.kt$TaskAndTagEntity$@ColumnInfo("taskid") val taskId: Int</ID>
-    <ID>UndocumentedPublicProperty:TaskAndTagEntity.kt$TaskAndTagEntity$@PrimaryKey(autoGenerate = true) @ColumnInfo(name = "_id") val id: Long</ID>
+    <ID>UndocumentedPublicProperty:Task.kt$Task$@Relation( parentColumn = "_id", entityColumn = "_id", associateBy = Junction( value = TaskAndTagEntity::class, parentColumn = "taskid", entityColumn = "tagid", ), ) val tags: List&lt;TagEntity&gt;</ID>
+    <ID>UndocumentedPublicProperty:TaskAndTagEntity.kt$TaskAndTagEntity$@ColumnInfo("tagid", index = true) val tagId: Int</ID>
+    <ID>UndocumentedPublicProperty:TaskAndTagEntity.kt$TaskAndTagEntity$@ColumnInfo("taskid", index = true) val taskId: Int</ID>
+    <ID>UndocumentedPublicProperty:TaskAndTagEntity.kt$TaskAndTagEntity$@ColumnInfo(name = "_id") val id: Long = 0</ID>
     <ID>UndocumentedPublicProperty:TaskEntity.kt$TaskEntity$@ColumnInfo("firstdue") val firstDue: LocalDate</ID>
     <ID>UndocumentedPublicProperty:TaskEntity.kt$TaskEntity$@ColumnInfo("lastnotified") val lastNotified: LocalDate</ID>
     <ID>UndocumentedPublicProperty:TaskEntity.kt$TaskEntity$@ColumnInfo("lastperformed") val lastPerformed: LocalDate</ID>
@@ -23,7 +25,7 @@
     <ID>UndocumentedPublicProperty:TaskEntity.kt$TaskEntity$@ColumnInfo("notifications_period") val notificationsPeriod: DatePeriod</ID>
     <ID>UndocumentedPublicProperty:TaskEntity.kt$TaskEntity$@ColumnInfo("notifications_time") val notificationTimeOfDay: LocalTime</ID>
     <ID>UndocumentedPublicProperty:TaskEntity.kt$TaskEntity$@ColumnInfo("period") val periodDays: Int</ID>
-    <ID>UndocumentedPublicProperty:TaskEntity.kt$TaskEntity$@PrimaryKey(autoGenerate = true) @ColumnInfo(name = "_id") val id: Long</ID>
+    <ID>UndocumentedPublicProperty:TaskEntity.kt$TaskEntity$@PrimaryKey(autoGenerate = true) @ColumnInfo(name = "_id") val id: Long = 0</ID>
     <ID>UndocumentedPublicProperty:TaskEntity.kt$TaskEntity$val created: LocalDate</ID>
     <ID>UndocumentedPublicProperty:TaskEntity.kt$TaskEntity$val details: String</ID>
     <ID>UndocumentedPublicProperty:TaskEntity.kt$TaskEntity$val name: String</ID>
