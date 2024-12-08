@@ -6,6 +6,7 @@ import net.c306.conventions.shared.configureAndroidModule
 import net.c306.conventions.shared.configureAndroidTests
 import net.c306.conventions.shared.hasTestFixtures
 import net.c306.conventions.shared.libs
+import net.c306.conventions.shared.setupDetekt
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -30,6 +31,8 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
                 apply(libs.findPlugin("agp.library").get().get().pluginId)
                 apply(libs.findPlugin("kgp.android").get().get().pluginId)
             }
+
+            setupDetekt()
 
             extensions.configure<LibraryExtension> {
                 configureAndroidModule<KotlinAndroidProjectExtension>(this)
@@ -56,9 +59,8 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
     /**
      * Checks if any AndroidTest files exist.
      */
-    private fun Project.hasAndroidTests() =
-        projectDir.resolve("src/androidTest").exists() &&
-            projectDir.resolve("src/androidTest")
-                .walkBottomUp()
-                .firstOrNull { it.isFile } != null
+    private fun Project.hasAndroidTests() = projectDir.resolve("src/androidTest").exists() &&
+        projectDir.resolve("src/androidTest")
+            .walkBottomUp()
+            .firstOrNull { it.isFile } != null
 }

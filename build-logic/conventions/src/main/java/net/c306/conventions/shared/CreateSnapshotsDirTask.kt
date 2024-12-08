@@ -46,7 +46,6 @@ abstract class CreateSnapshotsDirTask @Inject constructor(
     companion object {
         private const val NAME = "createSnapshotsDirTask"
 
-
         fun register(project: Project) {
             val createSnapshotsDirTask: TaskProvider<CreateSnapshotsDirTask> =
                 project.tasks.register<CreateSnapshotsDirTask>(NAME)
@@ -54,8 +53,6 @@ abstract class CreateSnapshotsDirTask @Inject constructor(
             project.tasks.withType<Test>().configureEach {
                 inputs.files(createSnapshotsDirTask)
             }
-
         }
     }
-
 }
