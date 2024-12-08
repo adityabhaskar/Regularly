@@ -10,8 +10,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  spotless:
-    name: Checks
+  check_build:
+    name: Checks & Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -28,4 +28,10 @@ jobs:
           gradle-version: wrapper
 
       - name: Run checks
-        uses: ./gradlew spotlessCheck lint detektMain
+        run: ./gradlew spotlessCheck lint detektMain
+
+      - name: Build debug
+        run: ./gradlew assembleDebug assembleDebugAndroidTest
+
+      - name: Run tests
+        run: ./gradlew testDebugUnitTest
