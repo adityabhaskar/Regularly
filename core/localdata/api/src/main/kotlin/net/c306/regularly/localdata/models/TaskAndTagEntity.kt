@@ -11,7 +11,7 @@ import androidx.room.PrimaryKey
  */
 @Entity(tableName = "taskTags")
 data class TaskAndTagEntity(
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "_id") val id: Long,
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "_id") val id: Long = 0,
     @ColumnInfo("taskid") val taskId: Int,
     @ColumnInfo("tagid") val tagId: Int,
 )

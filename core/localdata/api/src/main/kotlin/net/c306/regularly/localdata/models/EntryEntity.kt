@@ -23,7 +23,7 @@ import kotlinx.datetime.LocalDate
     ],
 )
 data class EntryEntity(
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "_id") val id: Long,
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "_id") val id: Long = 0,
     @ColumnInfo(name = "taskid") val taskId: Int,
     @ColumnInfo(name = "entrydate") val completedDate: LocalDate,
     @ColumnInfo(name = "note") val notes: String,

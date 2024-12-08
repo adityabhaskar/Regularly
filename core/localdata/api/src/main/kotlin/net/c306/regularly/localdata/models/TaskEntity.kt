@@ -14,7 +14,7 @@ import kotlinx.datetime.LocalTime
  */
 @Entity(tableName = "tasks")
 data class TaskEntity(
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "_id") val id: Long,
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "_id") val id: Long = 0,
     val name: String,
     @ColumnInfo("period") val periodDays: Int,
     @ColumnInfo("firstdue") val firstDue: LocalDate,
