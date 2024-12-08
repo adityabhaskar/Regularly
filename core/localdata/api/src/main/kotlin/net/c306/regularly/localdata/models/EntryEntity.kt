@@ -12,17 +12,17 @@ import kotlinx.datetime.LocalDate
  * The column names in the table are kept to stay compatible with the old Regularly app.
  */
 @Entity(
-    tableName = "entries",
+    tableName = "log",
     foreignKeys = [
         ForeignKey(
-            entity = Task::class,
+            entity = TaskEntity::class,
             parentColumns = ["_id"],
             childColumns = ["taskid"],
             onDelete = ForeignKey.CASCADE,
         ),
     ],
 )
-data class TaskEntry(
+data class EntryEntity(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "_id") val id: Long,
     @ColumnInfo(name = "taskid") val taskId: Int,
     @ColumnInfo(name = "entrydate") val completedDate: LocalDate,
