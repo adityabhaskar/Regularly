@@ -13,30 +13,30 @@ interface TaskDao {
      */
     @Transaction
     @Query("SELECT * FROM tasks")
-    fun getAllTasks(): List<Task>
+    suspend fun getAllTasks(): List<Task>
 
     /**
      * Returns all tags with their associated tasks.
      */
     @Transaction
     @Query("SELECT * FROM tags")
-    fun getAllTags(): List<TagWithTasks>
+    suspend fun getAllTags(): List<TagWithTasks>
 
     /**
      * Inserts a task into the database. Returns the [TaskEntity.id] for the inserted item.
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertTask(task: TaskEntity): Long
+    suspend fun insertTask(task: TaskEntity): Long
 
     /**
      * Inserts a tag into the database. Returns the [TagEntity.id] for the inserted item.
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertTag(task: TagEntity): Long
+    suspend fun insertTag(task: TagEntity): Long
 
     /**
      * Inserts a task and tag association into the database.
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertTaskAndTag(task: TaskAndTagEntity)
+    suspend fun insertTaskAndTag(task: TaskAndTagEntity)
 }
