@@ -1,19 +1,26 @@
 plugins {
     alias(libs.plugins.library.android)
-    // OR
-    // alias(libs.plugins.library.kotlin)
 
     // Optional: parcelize
     // id("kotlin-parcelize")
-    // Optional: use compose in module
-    // alias(libs.plugins.compose.library)
-    // Optional: Use hilt in module
-    // alias(libs.plugins.hilt)
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.room)
 }
 
 android {
     namespace = "net.c306.regularly.localdata.impl"
 }
 
+room {
+    schemaDirectory("$projectDir/schemas")
+}
+
+ksp {
+    arg("room.generateKotlin", "true")
+}
+
 dependencies {
+    implementation(libs.androidx.room)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
 }

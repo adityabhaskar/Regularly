@@ -17,6 +17,7 @@ kotlinx-collections-immutable = "0.3.8"
 kotlinx-datetime = "0.6.1"
 androidx-hilt = "1.2.0"
 google-hilt = "2.53"
+room = "2.6.1"
 
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -46,6 +47,10 @@ androidx-compose-material3 = { group = "androidx.compose.material3", name = "mat
 androidx-compose-material3-windowSize = { group = "androidx.compose.material3", name = "material3-window-size-class" }
 androidx-hilt-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "androidx-hilt" }
 androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "androidx-hilt" }
+androidx-room = { module = "androidx.room:room-runtime", version.ref = "room" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+androidx-room-test = { module = "androidx.room:room-testing", version.ref = "room" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 androidx-lifecycle-runtime = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle-runtime" }
 androidx-lint-gradle = { module = "androidx.lint:lint-gradle", version.ref = "lint-gradle" }
 google-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "google-hilt" }
@@ -77,6 +82,7 @@ jetbrains-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = 
 google-hilt = { id = "com.google.dagger.hilt.android", version.ref = "google-hilt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 paparazzi = { id = "app.cash.paparazzi", version.ref = "paparazzi" }
+room = {id = "androidx.room", version.ref = "room"}
 
 android-lint = { id = "com.android.lint", version.ref = "agp" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
