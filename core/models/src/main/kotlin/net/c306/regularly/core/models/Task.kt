@@ -13,7 +13,7 @@ internal data class Task(
     val lastNotified: LocalDate,
     val created: LocalDate,
     val details: String,
-    val notificationsEnabled: Boolean,
+    val areNotificationsEnabled: Boolean,
     val notificationTimeOfDay: LocalTime,
     val notificationsPeriod: DatePeriod,
 )

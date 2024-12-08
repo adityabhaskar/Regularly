@@ -28,11 +28,6 @@ internal inline fun <reified T : KotlinTopLevelExtension> Project.configureAndro
         }
 
         addBaseDependencies<T>()
-
-        dependencies {
-//            add("lintChecks", project(path = ":checks"))
-//            add("implementation", libs.findLibrary("jakewharton-timber").get())
-        }
     }
 }
 
