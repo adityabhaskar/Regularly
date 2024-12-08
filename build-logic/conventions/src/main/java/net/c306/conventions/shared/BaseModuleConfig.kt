@@ -4,6 +4,7 @@ import com.android.build.api.dsl.CommonExtension
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalog
 import org.gradle.api.artifacts.VersionCatalogsExtension
+import org.gradle.api.plugins.JavaPlugin
 import org.gradle.kotlin.dsl.*
 import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
@@ -31,6 +32,14 @@ internal inline fun <reified T : KotlinTopLevelExtension> Project.configureAndro
     }
 }
 
+
+internal fun Project.isJvmModule(): Boolean {
+    plugins.forEach {
+        if (it is JavaPlugin) return true
+    }
+    return false
+}
+
 /**
  * Adds the base dependencies that every module needs.
  */
@@ -42,6 +51,33 @@ internal inline fun <reified T : KotlinTopLevelExtension> Project.addBaseDepende
         add("testImplementation", libs.findLibrary("testParameterInjector").get())
         add("implementation", libs.findLibrary("kotlinx.collections.immutable").get())
         add("implementation", libs.findLibrary("kotlinx.datetime").get())
+
+        add("implementation", platform(libs.findLibrary("kotlinx.coroutines").get()))
+        add("implementation", libs.findLibrary("kotlinx.coroutines.core").get())
+
+        add("testImplementation", platform(libs.findLibrary("kotlinx.coroutines").get()))
+        add("testImplementation", libs.findLibrary("kotlinx.coroutines.core").get())
+        add("testImplementation", libs.findLibrary("kotlinx.coroutines.test").get())
+
+        if (!isJvmModule()) {
+            add("implementation", libs.findLibrary("kotlinx.coroutines.android").get())
+            add("implementation", libs.findLibrary("kotlinx.coroutines.playservices").get())
+
+            add("testImplementation", libs.findLibrary("kotlinx.coroutines.android").get())
+
+            add("androidTestImplementation", platform(libs.findLibrary("kotlinx.coroutines").get()))
+            add("androidTestImplementation", libs.findLibrary("kotlinx.coroutines.core").get())
+            add("androidTestImplementation", libs.findLibrary("kotlinx.coroutines.android").get())
+            add("androidTestImplementation", libs.findLibrary("kotlinx.coroutines.test").get())
+        }
+
+        if (hasTestFixtures()) {
+            add(
+                "testFixturesImplementation",
+                platform(libs.findLibrary("kotlinx.coroutines").get()),
+            )
+            add("testFixturesImplementation", libs.findLibrary("kotlinx.coroutines.core").get())
+        }
     }
     setupKotlinCompilerOptions<T>()
 }
