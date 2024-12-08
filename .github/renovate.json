@@ -1,16 +1,23 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base"
+    "config:recommended"
   ],
   "packageRules": [
     {
-      "matchUpdateTypes": ["major"],
+      "matchUpdateTypes": [
+        "major"
+      ],
       "dependencyDashboardApproval": true,
-      "addLabels": ["MAJOR"]
+      "addLabels": [
+        "MAJOR"
+      ]
     },
     {
-      "matchUpdateTypes": ["major", "minor"],
+      "matchUpdateTypes": [
+        "major",
+        "minor"
+      ],
       "minimumReleaseAge": "15 days",
       "internalChecksFilter": "strict"
     },
@@ -25,7 +32,11 @@
     },
     {
       "description": "Automatically merge minor and patch-level updates",
-      "matchUpdateTypes": ["minor", "patch", "digest"],
+      "matchUpdateTypes": [
+        "minor",
+        "patch",
+        "digest"
+      ],
       "automerge": true,
       "automergeType": "pr",
       "platformAutomerge": true,
@@ -33,16 +44,28 @@
     },
     {
       "description": "Disable updates to SNAPSHOTS",
-      "matchDatasources": ["maven"],
+      "matchDatasources": [
+        "maven"
+      ],
       "allowedVersions": "!/SNAPSHOT$/"
     }
   ],
-  "assignees": ["adityabhaskar"],
-  "baseBranches": ["main"],
+  "assignees": [
+    "adityabhaskar"
+  ],
+  "baseBranches": [
+    "main"
+  ],
   "dependencyDashboardOSVVulnerabilitySummary": "all",
   "osvVulnerabilityAlerts": true,
-  "enabledManagers": ["github-actions", "gradle", "gradle-wrapper"],
-  "prBodyNotes": ["{{#if isMajor}}:warning: MAJOR MAJOR MAJOR :warning:{{/if}}"],
+  "enabledManagers": [
+    "github-actions",
+    "gradle",
+    "gradle-wrapper"
+  ],
+  "prBodyNotes": [
+    "{{#if isMajor}}:warning: MAJOR MAJOR MAJOR :warning:{{/if}}"
+  ],
   "prConcurrentLimit": 4,
   "separateMultipleMajor": true
 }
