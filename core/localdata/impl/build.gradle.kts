@@ -1,8 +1,5 @@
 plugins {
     alias(libs.plugins.library.android)
-
-    // Optional: parcelize
-    // id("kotlin-parcelize")
     alias(libs.plugins.hilt)
     alias(libs.plugins.room)
 }
@@ -20,6 +17,8 @@ ksp {
 }
 
 dependencies {
+    implementation(projects.core.localdata.api)
+
     implementation(libs.androidx.room)
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)

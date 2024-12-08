@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>UndocumentedPublicProperty:Task.kt$Task$@ColumnInfo("firstdue") val firstDue: LocalDate</ID>
+    <ID>UndocumentedPublicProperty:Task.kt$Task$@ColumnInfo("lastnotified") val lastNotified: LocalDate</ID>
+    <ID>UndocumentedPublicProperty:Task.kt$Task$@ColumnInfo("lastperformed") val lastPerformed: LocalDate</ID>
+    <ID>UndocumentedPublicProperty:Task.kt$Task$@ColumnInfo("notifications_enabled") val areNotificationsEnabled: Boolean</ID>
+    <ID>UndocumentedPublicProperty:Task.kt$Task$@ColumnInfo("notifications_period") val notificationsPeriod: DatePeriod</ID>
+    <ID>UndocumentedPublicProperty:Task.kt$Task$@ColumnInfo("notifications_time") val notificationTimeOfDay: LocalTime</ID>
+    <ID>UndocumentedPublicProperty:Task.kt$Task$@ColumnInfo("period") val periodDays: Int</ID>
+    <ID>UndocumentedPublicProperty:Task.kt$Task$@PrimaryKey(autoGenerate = true) @ColumnInfo(name = "_id") val id: Long</ID>
+    <ID>UndocumentedPublicProperty:Task.kt$Task$val created: LocalDate</ID>
+    <ID>UndocumentedPublicProperty:Task.kt$Task$val details: String</ID>
+    <ID>UndocumentedPublicProperty:Task.kt$Task$val name: String</ID>
+  </CurrentIssues>
+</SmellBaseline>

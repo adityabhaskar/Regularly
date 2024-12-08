@@ -1,13 +1,17 @@
 plugins {
-     alias(libs.plugins.library.kotlin)
+    alias(libs.plugins.library.android)
+    alias(libs.plugins.ksp)
+}
 
-    // Optional: parcelize
-    // id("kotlin-parcelize")
-    // Optional: use compose in module
-    // alias(libs.plugins.compose.library)
-    // Optional: Use hilt in module
-    // alias(libs.plugins.hilt)
+android {
+    namespace = "net.c306.regularly.localdata.api"
+}
+
+detekt {
+    baseline = file("$projectDir/detekt-baseline.xml")
 }
 
 dependencies {
+    implementation(libs.androidx.room)
+    ksp(libs.androidx.room.compiler)
 }
