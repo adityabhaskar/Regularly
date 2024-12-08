@@ -117,7 +117,7 @@ fun createModule(moduleName: String) {
 }
 
 private fun typeSafeModuleName(moduleName: String) = moduleName.replace("-\\w".toRegex()) {
-    it.value[1].toUpperCase().toString()
+    it.value[1].uppercase().toString()
 }
 
 private fun addModuleToGradleIncludes(gradleSettingsFile: File, moduleName: String) {

@@ -20,8 +20,6 @@ class KotlinLibraryConventionPlugin : Plugin<Project> {
         with(target) {
             with(pluginManager) {
                 apply("org.jetbrains.kotlin.jvm")
-                apply("jvm-module-test")
-                apply("org.jmailen.kotlinter")
 
                 setupDetekt()
 
