@@ -26,6 +26,9 @@ android {
 
 dependencies {
     implementation(projects.core.theme)
+    implementation(projects.core.models)
+    implementation(projects.core.localdata.api)
+    implementation(projects.core.localdata.impl)
 
     implementation(libs.androidx.core)
     implementation(libs.androidx.lifecycle.runtime)

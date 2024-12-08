@@ -28,4 +28,6 @@ include(
     ":app",
     ":core:theme",
     ":core:models",
+    ":core:localdata:api",
+    ":core:localdata:impl",
 )

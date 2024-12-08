@@ -4,7 +4,6 @@ import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
 import io.gitlab.arturbosch.detekt.report.ReportMergeTask
 import org.gradle.api.Project
-import org.gradle.api.plugins.JavaPlugin
 
 /**
  * Configures Detekt on the [Project].
@@ -61,11 +60,4 @@ internal fun Project.setupDetekt() {
             source.from("src/androidTest/java", "src/androidTest/kotlin")
         }
     }
-}
-
-private fun Project.isJvmModule(): Boolean {
-    plugins.forEach {
-        if (it is JavaPlugin) return true
-    }
-    return false
 }
