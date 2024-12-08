@@ -19,6 +19,8 @@ internal interface DatabaseModule {
             context = applicationContext,
             klass = TaskDatabase::class.java,
             name = "database-name",
-        ).build()
+        )
+            .fallbackToDestructiveMigration()
+            .build()
     }
 }

@@ -16,6 +16,7 @@ import net.c306.regularly.localdata.models.TaskEntity
         EntryEntity::class,
     ],
     version = 1,
+    autoMigrations = [],
 )
 @TypeConverters(Converters::class)
 internal abstract class TaskDatabase : RoomDatabase() {
