@@ -42,7 +42,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+private fun GreetingPreview() {
     AppTheme {
         Surface(modifier = Modifier.padding(8.dp)) {
             Greeting("Android")

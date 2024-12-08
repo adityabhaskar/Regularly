@@ -21,7 +21,7 @@ allprojects {
     extensions.configure<com.diffplug.gradle.spotless.SpotlessExtension> {
         format("misc") {
             // define the files to apply `misc` to
-            target ("*.gradle", ".gitattributes", ".gitignore")
+            target("*.gradle", ".gitattributes", ".gitignore")
 
             // define the steps to apply to those files
             trimTrailingWhitespace()
@@ -31,10 +31,17 @@ allprojects {
             target("**/*.kt")
             targetExclude("**/build/**/*.kt")
             ktlint(libs.versions.ktlint.get())
+                .customRuleSets(
+                    listOf("io.nlopez.compose.rules:ktlint:0.4.16"),
+                )
         }
-        format("kts") {
-            target("**/*.kts")
+        kotlinGradle {
+            target("*.gradle.kts", "**/*.kts")
             targetExclude("**/build/**/*.kts")
+            ktlint(libs.versions.ktlint.get())
+                .customRuleSets(
+                    listOf("io.nlopez.compose.rules:ktlint:0.4.16"),
+                )
         }
         format("xml") {
             target("**/*.xml")
