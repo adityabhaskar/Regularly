@@ -14,6 +14,6 @@ import androidx.room.Entity
 )
 data class TaskAndTagEntity(
     @ColumnInfo(name = "_id") val id: Long = 0,
-    @ColumnInfo("taskid", index = true) val taskId: Int,
-    @ColumnInfo("tagid", index = true) val tagId: Int,
+    @ColumnInfo("taskid", index = true) val taskId: Long,
+    @ColumnInfo("tagid", index = true) val tagId: Long,
 )

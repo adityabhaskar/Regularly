@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "5fb6cac484bd734ff1be4d57567c9b26",
+    "identityHash": "c1df54611bfcdfd70a38700bf2cb61fa",
     "entities": [
       {
         "tableName": "tasks",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `period` INTEGER NOT NULL, `firstdue` TEXT NOT NULL, `lastperformed` TEXT NOT NULL, `lastnotified` TEXT NOT NULL, `created` TEXT NOT NULL, `details` TEXT NOT NULL, `notifications_enabled` INTEGER NOT NULL, `notifications_time` TEXT NOT NULL, `notifications_period` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `period` INTEGER NOT NULL, `firstdue` TEXT NOT NULL, `lastperformed` TEXT, `lastnotified` TEXT, `created` TEXT NOT NULL, `details` TEXT NOT NULL, `notifications_enabled` INTEGER NOT NULL, `notifications_time` TEXT, `notifications_period` TEXT)",
         "fields": [
           {
             "fieldPath": "id",
@@ -36,13 +36,13 @@
             "fieldPath": "lastPerformed",
             "columnName": "lastperformed",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "lastNotified",
             "columnName": "lastnotified",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "created",
@@ -66,13 +66,13 @@
             "fieldPath": "notificationTimeOfDay",
             "columnName": "notifications_time",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "notificationsPeriod",
             "columnName": "notifications_period",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -232,7 +232,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5fb6cac484bd734ff1be4d57567c9b26')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c1df54611bfcdfd70a38700bf2cb61fa')"
     ]
   }
 }

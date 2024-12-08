@@ -14,4 +14,7 @@ data class TagEntity(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "_id") val id: Long = 0,
     @ColumnInfo(name = "tagname") val name: String,
     @ColumnInfo(name = "position") val order: Int,
-)
+) {
+    /** Checks whether non `id` properties are equal. */
+    fun isSame(other: TagEntity) = name == other.name && order == other.order
+}
