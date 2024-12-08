@@ -4,6 +4,7 @@ import com.android.build.api.dsl.ApplicationExtension
 import net.c306.conventions.shared.configureAndroidModule
 import net.c306.conventions.shared.configureAndroidTests
 import net.c306.conventions.shared.libs
+import net.c306.conventions.shared.setupDetekt
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -26,6 +27,8 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 apply(libs.findPlugin("agp.application").get().get().pluginId)
                 apply(libs.findPlugin("kgp.android").get().get().pluginId)
             }
+
+            setupDetekt()
 
             extensions.configure<ApplicationExtension> {
                 defaultConfig {

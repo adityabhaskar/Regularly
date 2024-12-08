@@ -7,12 +7,11 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType
 
 // import org.gradle.api.attributes.java.TargetJvmEnvironment
-//import org.gradle.kotlin.dsl.dependencies
+// import org.gradle.kotlin.dsl.dependencies
 /**
  * The Compose convention plugin is designed for use in `android-library` modules. It applies
  * relevant plugins, build feature flags, compiler options and core dependencies.
  */
-@Suppress("ktlint:standard-max-line-length")
 class ComposeLibraryConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {

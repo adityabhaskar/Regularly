@@ -19,7 +19,6 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinTopLevelExtension
 internal val Project.libs
     get(): VersionCatalog = extensions.getByType<VersionCatalogsExtension>().named("libs")
 
-
 /**
  * Sets up core config for all Android modules - application and library.
  */
@@ -55,36 +54,33 @@ internal inline fun <reified T : KotlinTopLevelExtension> Project.addBaseDepende
     setupKotlinCompilerOptions<T>()
 }
 
-private inline fun <reified T : KotlinTopLevelExtension> Project.setupKotlinCompilerOptions() =
-    configure<T> {
-        when (this) {
-            is KotlinAndroidProjectExtension -> compilerOptions
-            is KotlinJvmProjectExtension -> compilerOptions
-            else -> TODO("Unsupported project extension $this ${T::class}")
-        }.apply {
-            jvmToolchain(libs.findVersion("java").get().toString().toInt())
+private inline fun <reified T : KotlinTopLevelExtension> Project.setupKotlinCompilerOptions() = configure<T> {
+    when (this) {
+        is KotlinAndroidProjectExtension -> compilerOptions
+        is KotlinJvmProjectExtension -> compilerOptions
+        else -> TODO("Unsupported project extension $this ${T::class}")
+    }.apply {
+        jvmToolchain(libs.findVersion("java").get().toString().toInt())
 
-            val warningsAsErrors: String? by project
-            allWarningsAsErrors = warningsAsErrors.toBoolean()
+        val warningsAsErrors: String? by project
+        allWarningsAsErrors = warningsAsErrors.toBoolean()
 
-            freeCompilerArgs.addAll(
-                // https://kotlinlang.org/docs/java-to-kotlin-interop.html#default-methods-in-interfaces
-                "-Xjvm-default=all",
-                "-opt-in=kotlin.RequiresOptIn",
-                // Enable experimental coroutines APIs, including Flow
-                "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
-                "-opt-in=kotlinx.coroutines.FlowPreview",
-                "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
-            )
-        }
+        freeCompilerArgs.addAll(
+            // https://kotlinlang.org/docs/java-to-kotlin-interop.html#default-methods-in-interfaces
+            "-Xjvm-default=all",
+            "-opt-in=kotlin.RequiresOptIn",
+            // Enable experimental coroutines APIs, including Flow
+            "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+            "-opt-in=kotlinx.coroutines.FlowPreview",
+            "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
+        )
     }
-
+}
 
 /**
  * Checks if any TestFixtures files exist.
  */
-internal fun Project.hasTestFixtures() =
-    projectDir.resolve("src/testFixtures").exists() &&
-        projectDir.resolve("src/testFixtures")
-            .walkBottomUp()
-            .firstOrNull { it.isFile } != null
+internal fun Project.hasTestFixtures() = projectDir.resolve("src/testFixtures").exists() &&
+    projectDir.resolve("src/testFixtures")
+        .walkBottomUp()
+        .firstOrNull { it.isFile } != null

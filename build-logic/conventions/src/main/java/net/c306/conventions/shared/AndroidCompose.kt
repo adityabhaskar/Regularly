@@ -28,26 +28,26 @@ internal fun Project.configureAndroidCompose(
             add("implementation", platform(bom))
             add(
                 configurationName = "implementation",
-                dependencyNotation = libs.findLibrary("androidx.compose.ui").get()
+                dependencyNotation = libs.findLibrary("androidx.compose.ui").get(),
             )
             add(
                 configurationName = "implementation",
-                dependencyNotation = libs.findLibrary("androidx.compose.ui.graphics").get()
+                dependencyNotation = libs.findLibrary("androidx.compose.ui.graphics").get(),
             )
             // Animations
             add(
                 configurationName = "implementation",
-                dependencyNotation = libs.findLibrary("androidx.compose.animation").get()
+                dependencyNotation = libs.findLibrary("androidx.compose.animation").get(),
             )
 
             // Tooling support (Previews, etc.)
             add(
                 configurationName = "implementation",
-                dependencyNotation = libs.findLibrary("androidx.compose.ui.tooling").get()
+                dependencyNotation = libs.findLibrary("androidx.compose.ui.tooling").get(),
             )
             add(
                 configurationName = "implementation",
-                dependencyNotation = libs.findLibrary("androidx.compose.ui.tooling.preview").get()
+                dependencyNotation = libs.findLibrary("androidx.compose.ui.tooling.preview").get(),
             )
 
             // Material 3
@@ -62,14 +62,14 @@ internal fun Project.configureAndroidCompose(
             )
             add(
                 configurationName = "debugImplementation",
-                dependencyNotation = libs.findLibrary("androidx.compose.ui.test.manifest").get()
+                dependencyNotation = libs.findLibrary("androidx.compose.ui.test.manifest").get(),
             )
 
             // Android test
             add("androidTestImplementation", platform(bom))
             add(
                 configurationName = "androidTestImplementation",
-                dependencyNotation = libs.findLibrary("androidx.compose.ui.test.manifest").get()
+                dependencyNotation = libs.findLibrary("androidx.compose.ui.test.manifest").get(),
             )
             add(
                 configurationName = "androidTestImplementation",

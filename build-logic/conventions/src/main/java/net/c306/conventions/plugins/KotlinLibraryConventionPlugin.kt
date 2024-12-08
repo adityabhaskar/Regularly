@@ -2,6 +2,7 @@ package net.c306.conventions.plugins
 
 import net.c306.conventions.shared.addBaseDependencies
 import net.c306.conventions.shared.hasTestFixtures
+import net.c306.conventions.shared.setupDetekt
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
@@ -21,6 +22,8 @@ class KotlinLibraryConventionPlugin : Plugin<Project> {
                 apply("org.jetbrains.kotlin.jvm")
                 apply("jvm-module-test")
                 apply("org.jmailen.kotlinter")
+
+                setupDetekt()
 
                 if (hasTestFixtures()) {
                     apply("java-test-fixtures")

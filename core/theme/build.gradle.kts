@@ -7,5 +7,9 @@ android {
     namespace = "net.c306.regularly.core.theme"
 }
 
+detekt {
+    baseline = file("detekt-baseline-debug.xml")
+}
+
 dependencies {
 }
