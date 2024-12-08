@@ -73,9 +73,9 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 android-lint = { id = "com.android.lint", version.ref = "agp" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 
-application = { id = "net.c306.application", version.ref = "conventions" }
-library-android = { id = "net.c306.library.android", version.ref = "conventions" }
-library-kotlin = { id = "net.c306.library.kotlin", version.ref = "conventions" }
-compose-library = { id = "net.c306.compose.library", version.ref = "conventions" }
-compose-application = { id = "net.c306.compose.application", version.ref = "conventions" }
-hilt = { id = "net.c306.hilt", version.ref = "conventions" }
+application = { id = "net.c306.conventions.application", version.ref = "conventions" }
+library-android = { id = "net.c306.conventions.library.android", version.ref = "conventions" }
+library-kotlin = { id = "net.c306.conventions.library.kotlin", version.ref = "conventions" }
+compose-library = { id = "net.c306.conventions.compose.library", version.ref = "conventions" }
+compose-application = { id = "net.c306.conventions.compose.application", version.ref = "conventions" }
+hilt = { id = "net.c306.conventions.hilt", version.ref = "conventions" }
