@@ -11,7 +11,7 @@ concurrency:
 
 jobs:
   spotless:
-    name: Spotless & lint
+    name: Checks
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -27,5 +27,5 @@ jobs:
         with:
           gradle-version: wrapper
 
-      - name: Run spotless & lint
-        uses: ./gradlew spotlessCheck lint
+      - name: Run checks
+        uses: ./gradlew spotlessCheck lint detektMain
