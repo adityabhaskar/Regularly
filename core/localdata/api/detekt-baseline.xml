@@ -16,5 +16,11 @@
     <ID>UndocumentedPublicProperty:Task.kt$Task$val created: LocalDate</ID>
     <ID>UndocumentedPublicProperty:Task.kt$Task$val details: String</ID>
     <ID>UndocumentedPublicProperty:Task.kt$Task$val name: String</ID>
+    <ID>UndocumentedPublicProperty:TaskEntry.kt$TaskEntry$@ColumnInfo(name = "entrydate") val completedDate: LocalDate</ID>
+    <ID>UndocumentedPublicProperty:TaskEntry.kt$TaskEntry$@ColumnInfo(name = "note") val notes: String</ID>
+    <ID>UndocumentedPublicProperty:TaskEntry.kt$TaskEntry$@ColumnInfo(name = "taskid") val taskId: Int</ID>
+    <ID>UndocumentedPublicProperty:TaskEntry.kt$TaskEntry$@PrimaryKey(autoGenerate = true) @ColumnInfo(name = "_id") val id: Long</ID>
+    <ID>UndocumentedPublicProperty:TaskWithEntries.kt$TaskWithEntries$@Embedded val task: Task</ID>
+    <ID>UndocumentedPublicProperty:TaskWithEntries.kt$TaskWithEntries$@Relation( parentColumn = "_id", entityColumn = "taskid", ) val entries: List&lt;TaskEntry&gt;</ID>
   </CurrentIssues>
 </SmellBaseline>
