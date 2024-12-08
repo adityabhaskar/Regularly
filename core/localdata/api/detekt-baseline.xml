@@ -2,6 +2,9 @@
 <SmellBaseline>
   <ManuallySuppressedIssues></ManuallySuppressedIssues>
   <CurrentIssues>
+    <ID>UndocumentedPublicProperty:Tag.kt$Tag$@ColumnInfo(name = "position") val order: Int</ID>
+    <ID>UndocumentedPublicProperty:Tag.kt$Tag$@ColumnInfo(name = "tagname") val name: String</ID>
+    <ID>UndocumentedPublicProperty:Tag.kt$Tag$@PrimaryKey(autoGenerate = true) @ColumnInfo(name = "_id") val id: Long</ID>
     <ID>UndocumentedPublicProperty:Task.kt$Task$@ColumnInfo("firstdue") val firstDue: LocalDate</ID>
     <ID>UndocumentedPublicProperty:Task.kt$Task$@ColumnInfo("lastnotified") val lastNotified: LocalDate</ID>
     <ID>UndocumentedPublicProperty:Task.kt$Task$@ColumnInfo("lastperformed") val lastPerformed: LocalDate</ID>
