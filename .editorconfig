@@ -780,6 +780,7 @@ ij_kotlin_continuation_indent_size = 4
 
 # Ktlint specific rules and other overrides from standard rules
 ktlint_code_style = android_studio
+ktlint_standard_no-wildcard-imports = disabled
 ktlint_standard_if-else-bracing = enabled
 # This doesn't appear to have an impact at the moment, so we may still need to use suppress
 #  annotations for it.

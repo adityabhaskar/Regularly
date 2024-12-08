@@ -4,11 +4,7 @@ import com.android.build.api.dsl.CommonExtension
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalog
 import org.gradle.api.artifacts.VersionCatalogsExtension
-import org.gradle.kotlin.dsl.assign
-import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.dependencies
-import org.gradle.kotlin.dsl.getByType
-import org.gradle.kotlin.dsl.provideDelegate
+import org.gradle.kotlin.dsl.*
 import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinTopLevelExtension
@@ -32,11 +28,6 @@ internal inline fun <reified T : KotlinTopLevelExtension> Project.configureAndro
         }
 
         addBaseDependencies<T>()
-
-        dependencies {
-//            add("lintChecks", project(path = ":checks"))
-//            add("implementation", libs.findLibrary("jakewharton-timber").get())
-        }
     }
 }
 
@@ -50,6 +41,7 @@ internal inline fun <reified T : KotlinTopLevelExtension> Project.addBaseDepende
         add("testImplementation", libs.findLibrary("junit").get())
         add("testImplementation", libs.findLibrary("testParameterInjector").get())
         add("implementation", libs.findLibrary("kotlinx.collections.immutable").get())
+        add("implementation", libs.findLibrary("kotlinx.datetime").get())
     }
     setupKotlinCompilerOptions<T>()
 }
