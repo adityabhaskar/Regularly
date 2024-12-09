@@ -11,13 +11,9 @@
     <ID>UndocumentedPublicProperty:EntryEntity.kt$EntryEntity$@ColumnInfo(name = "note") val notes: String</ID>
     <ID>UndocumentedPublicProperty:EntryEntity.kt$EntryEntity$@ColumnInfo(name = "taskid", index = true) val taskId: Int</ID>
     <ID>UndocumentedPublicProperty:EntryEntity.kt$EntryEntity$@PrimaryKey(autoGenerate = true) @ColumnInfo(name = "_id") val id: Long = 0</ID>
-    <ID>UndocumentedPublicProperty:Tag.kt$Tag$@Embedded val tag: TagEntity</ID>
-    <ID>UndocumentedPublicProperty:Tag.kt$Tag$@Relation( parentColumn = "_id", entityColumn = "tagid", ) val tasks: List&lt;TaskEntity&gt;</ID>
     <ID>UndocumentedPublicProperty:TagEntity.kt$TagEntity$@ColumnInfo(name = "position") val order: Int</ID>
     <ID>UndocumentedPublicProperty:TagEntity.kt$TagEntity$@ColumnInfo(name = "tagname") val name: String</ID>
     <ID>UndocumentedPublicProperty:TagEntity.kt$TagEntity$@PrimaryKey(autoGenerate = true) @ColumnInfo(name = "_id") val id: Long = 0</ID>
-    <ID>UndocumentedPublicProperty:TagWithTasks.kt$TagWithTasks$@Embedded val tag: TagEntity</ID>
-    <ID>UndocumentedPublicProperty:TagWithTasks.kt$TagWithTasks$@Relation( parentColumn = "_id", entityColumn = "_id", associateBy = Junction( value = TaskAndTagEntity::class, parentColumn = "tagid", entityColumn = "taskid", ), ) val tasks: List&lt;TaskEntity&gt;</ID>
     <ID>UndocumentedPublicProperty:Task.kt$Task$@Embedded val task: TaskEntity</ID>
     <ID>UndocumentedPublicProperty:Task.kt$Task$@Relation( parentColumn = "_id", entityColumn = "_id", associateBy = Junction( value = TaskAndTagEntity::class, parentColumn = "taskid", entityColumn = "tagid", ), ) val tags: List&lt;TagEntity&gt;</ID>
     <ID>UndocumentedPublicProperty:TaskAndTagEntity.kt$TaskAndTagEntity$@ColumnInfo("tagid", index = true) val tagId: Long</ID>

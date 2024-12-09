@@ -6,6 +6,9 @@ import androidx.room.Relation
 
 /**
  * Storage data model for a tag including its tasks.
+ *
+ * @property tag Data for the tag.
+ * @property tasks List of tasks that have this tag.
  */
 data class Tag(
     @Embedded val tag: TagEntity,

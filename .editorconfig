@@ -785,8 +785,7 @@ ktlint_standard_if-else-bracing = enabled
 # This doesn't appear to have an impact at the moment, so we may still need to use suppress
 #  annotations for it.
 ktlint_standard_parameter-wrapping = disabled
-# Disable max line length here - we apply it via detekt
-ktlint_standard_max-line-length = disabled
+max_line_length = 100
 # Some rules from the Compose ruleset are not working. These are being overridden here for now.
 ktlint_function_naming_ignore_when_annotated_with = Composable
 ktlint_standard_property-naming = disabled
