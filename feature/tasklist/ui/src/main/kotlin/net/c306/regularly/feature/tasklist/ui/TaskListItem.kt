@@ -1,15 +1,14 @@
 package net.c306.regularly.feature.tasklist.ui
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Card
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import kotlinx.datetime.*
 import net.c306.regularly.core.theme.AppTheme
 import net.c306.regularly.core.utils.PreviewPhoneBothMode
 
@@ -19,11 +18,13 @@ import net.c306.regularly.core.utils.PreviewPhoneBothMode
  * @property id Unique id for the task
  * @property name Task name
  * @property description Task description
+ * @property dueDate Due date of the task. Provide `null` if no due date set.
  */
 data class TaskListItem(
     val id: Long,
     val name: String,
     val description: String,
+    val dueDate: LocalDate?,
 )
 
 @Composable
@@ -31,37 +32,85 @@ internal fun TaskListItem(
     item: TaskListItem,
     onClick: (id: Long) -> Unit,
     modifier: Modifier = Modifier,
+    today: LocalDate? = null,
 ) {
     Card(
         onClick = { onClick(item.id) },
         modifier = modifier,
         shape = RectangleShape,
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surface,
+        ),
     ) {
-        Column(modifier = Modifier.padding(8.dp)) {
-            Text(
-                text = item.name,
-                style = MaterialTheme.typography.bodyLarge,
-            )
+        Column(
+            modifier = Modifier
+                .minimumInteractiveComponentSize()
+                .padding(8.dp),
+            verticalArrangement = Arrangement.spacedBy(4.dp),
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    text = item.name,
+                    style = MaterialTheme.typography.bodyLarge,
+                )
+                Spacer(modifier = Modifier.weight(1f))
+                Text(
+                    text = item.dueDate?.toRelativeString(today).orEmpty(),
+                    style = MaterialTheme.typography.bodySmall,
+                )
+            }
             Text(
                 text = item.description,
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.bodySmall,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
             )
         }
     }
 }
 
+@Composable
+private fun LocalDate.toRelativeString(todayOverride: LocalDate? = null): String {
+    val today = todayOverride ?: Clock.System.todayIn(TimeZone.currentSystemDefault())
+    return when {
+        today == this -> "Today"
+        today.daysUntil(this) == 1 -> "Tomorrow"
+        today.daysUntil(this) == -1 -> "Yesterday"
+        today.monthsUntil(this) in -1..<0 -> "${this.daysUntil(today)} days ago"
+        today.yearsUntil(this) in -1..<0 -> "${this.monthsUntil(today)} months ago"
+        today.monthsUntil(this) in 0..<1 -> "in ${today.daysUntil(this)} days"
+        today.yearsUntil(this) in 0..<1 -> "in ${today.monthsUntil(this)} months"
+        else -> this.toString()
+    }
+}
+
 @PreviewPhoneBothMode
 @Composable
-private fun Preview() {
+private fun TaskListItemPreview() {
     AppTheme {
-        TaskListItem(
-            item = TaskListItem(
-                id = 1,
-                name = "Title",
-                description = "Description",
-            ),
-            onClick = {},
-            modifier = Modifier.fillMaxWidth(),
-        )
+        Column {
+            TaskListItem(
+                item = TaskListItem(
+                    id = 1,
+                    name = generateLoremIpsum(words = 4),
+                    description = generateLoremIpsum(words = 20),
+                    dueDate = LocalDate(year = 2023, monthNumber = 1, dayOfMonth = 1),
+                ),
+                onClick = {},
+                modifier = Modifier.fillMaxWidth(),
+                today = LocalDate(year = 2022, monthNumber = 1, dayOfMonth = 2),
+            )
+            TaskListItem(
+                item = TaskListItem(
+                    id = 1,
+                    name = generateLoremIpsum(words = 4),
+                    description = "",
+                    dueDate = LocalDate(year = 2023, monthNumber = 1, dayOfMonth = 1),
+                ),
+                onClick = {},
+                modifier = Modifier.fillMaxWidth(),
+                today = LocalDate(year = 2022, monthNumber = 12, dayOfMonth = 2),
+            )
+        }
     }
 }
