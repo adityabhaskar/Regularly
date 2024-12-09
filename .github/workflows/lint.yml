@@ -28,7 +28,7 @@ jobs:
           gradle-version: wrapper
 
       - name: Run checks
-        run: ./gradlew spotlessCheck lint detektMain
+        run: ./gradlew spotlessCheck lint detekt
 
       - name: Build debug
         run: ./gradlew assembleDebug assembleDebugAndroidTest

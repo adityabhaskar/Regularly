@@ -17,6 +17,8 @@ kotlinx-collections-immutable = "0.3.8"
 kotlinx-datetime = "0.6.1"
 androidx-hilt = "1.2.0"
 google-hilt = "2.53.1"
+room = "2.6.1"
+coroutines = "1.9.0"
 
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -27,6 +29,7 @@ paparazzi = "1.3.5"
 spotless = "7.0.0.BETA4"
 lint-gradle = "1.0.0-alpha02"
 detekt = "1.23.7"
+dependency-graphs = "0.1.6"
 
 conventions = "1.0"
 
@@ -46,6 +49,10 @@ androidx-compose-material3 = { group = "androidx.compose.material3", name = "mat
 androidx-compose-material3-windowSize = { group = "androidx.compose.material3", name = "material3-window-size-class" }
 androidx-hilt-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "androidx-hilt" }
 androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "androidx-hilt" }
+androidx-room = { module = "androidx.room:room-runtime", version.ref = "room" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+androidx-room-test = { module = "androidx.room:room-testing", version.ref = "room" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 androidx-lifecycle-runtime = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle-runtime" }
 androidx-lint-gradle = { module = "androidx.lint:lint-gradle", version.ref = "lint-gradle" }
 google-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "google-hilt" }
@@ -53,6 +60,11 @@ google-hilt-android-testing = { group = "com.google.dagger", name = "hilt-androi
 google-hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "google-hilt" }
 google-hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "google-hilt" }
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
+kotlinx-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-bom", version.ref = "coroutines" }
+kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android" }
+kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core" }
+kotlinx-coroutines-playservices = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-play-services" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test" }
 kotlinx-collections-immutable = { group = "org.jetbrains.kotlinx", name = "kotlinx-collections-immutable", version.ref = "kotlinx-collections-immutable" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
 javax-inject = { group = "javax.inject", name = "javax.inject", version = "1" }
@@ -77,10 +89,12 @@ jetbrains-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = 
 google-hilt = { id = "com.google.dagger.hilt.android", version.ref = "google-hilt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 paparazzi = { id = "app.cash.paparazzi", version.ref = "paparazzi" }
+room = { id = "androidx.room", version.ref = "room" }
 
 android-lint = { id = "com.android.lint", version.ref = "agp" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+dependencyGraphs = { id = "io.github.adityabhaskar.dependencygraph", version.ref = "dependency-graphs" }
 
 application = { id = "net.c306.conventions.application", version.ref = "conventions" }
 library-android = { id = "net.c306.conventions.library.android", version.ref = "conventions" }

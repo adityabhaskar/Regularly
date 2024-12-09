@@ -9,9 +9,7 @@ import org.jetbrains.kotlin.compose.compiler.gradle.ComposeCompilerGradlePluginE
  * This extension function applies the correct flags and dependencies to the module represented by
  * the [Project].
  */
-internal fun Project.configureAndroidCompose(
-    extension: CommonExtension<*, *, *, *, *, *>,
-) {
+internal fun Project.configureAndroidCompose(extension: CommonExtension<*, *, *, *, *, *>) {
     CreateSnapshotsDirTask.register(this)
 
     extension.apply {
