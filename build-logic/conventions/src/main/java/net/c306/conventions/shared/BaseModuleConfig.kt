@@ -32,12 +32,7 @@ internal inline fun <reified T : KotlinTopLevelExtension> Project.configureAndro
     }
 }
 
-internal fun Project.isJvmModule(): Boolean {
-    plugins.forEach {
-        if (it is JavaPlugin) return true
-    }
-    return false
-}
+internal fun Project.isJvmModule() = plugins.isNotEmpty() && plugins.any { it is JavaPlugin }
 
 /**
  * Adds the base dependencies that every module needs.
@@ -81,28 +76,29 @@ internal inline fun <reified T : KotlinTopLevelExtension> Project.addBaseDepende
     setupKotlinCompilerOptions<T>()
 }
 
-private inline fun <reified T : KotlinTopLevelExtension> Project.setupKotlinCompilerOptions() = configure<T> {
-    when (this) {
-        is KotlinAndroidProjectExtension -> compilerOptions
-        is KotlinJvmProjectExtension -> compilerOptions
-        else -> TODO("Unsupported project extension $this ${T::class}")
-    }.apply {
-        jvmToolchain(libs.findVersion("java").get().toString().toInt())
+private inline fun <reified T : KotlinTopLevelExtension> Project.setupKotlinCompilerOptions() =
+    configure<T> {
+        when (this) {
+            is KotlinAndroidProjectExtension -> compilerOptions
+            is KotlinJvmProjectExtension -> compilerOptions
+            else -> TODO("Unsupported project extension $this ${T::class}")
+        }.apply {
+            jvmToolchain(libs.findVersion("java").get().toString().toInt())
 
-        val warningsAsErrors: String? by project
-        allWarningsAsErrors = warningsAsErrors.toBoolean()
+            val warningsAsErrors: String? by project
+            allWarningsAsErrors = warningsAsErrors.toBoolean()
 
-        freeCompilerArgs.addAll(
-            // https://kotlinlang.org/docs/java-to-kotlin-interop.html#default-methods-in-interfaces
-            "-Xjvm-default=all",
-            "-opt-in=kotlin.RequiresOptIn",
-            // Enable experimental coroutines APIs, including Flow
-            "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
-            "-opt-in=kotlinx.coroutines.FlowPreview",
-            "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
-        )
+            freeCompilerArgs.addAll(
+                // https://kotlinlang.org/docs/java-to-kotlin-interop.html#default-methods-in-interfaces
+                "-Xjvm-default=all",
+                "-opt-in=kotlin.RequiresOptIn",
+                // Enable experimental coroutines APIs, including Flow
+                "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+                "-opt-in=kotlinx.coroutines.FlowPreview",
+                "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
+            )
+        }
     }
-}
 
 /**
  * Checks if any TestFixtures files exist.
