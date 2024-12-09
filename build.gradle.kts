@@ -1,3 +1,5 @@
+import io.github.adityabhaskar.dependencygraph.plugin.ShowLegend
+
 plugins {
     alias(libs.plugins.agp.application) apply false
     alias(libs.plugins.agp.library) apply false
@@ -52,4 +54,8 @@ allprojects {
             targetExclude("**/build/**/*.xml")
         }
     }
+}
+
+dependencyGraphConfig {
+    showLegend.set(ShowLegend.Never)
 }
