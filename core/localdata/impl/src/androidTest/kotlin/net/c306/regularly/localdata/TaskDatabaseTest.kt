@@ -88,7 +88,7 @@ class TaskDatabaseTest {
 
         val tags = dao.getAllTags()
 
-        val expectedTagWithTasks = TagWithTasks(
+        val expectedTagWithTasks = Tag(
             tag = tag.copy(id = tagId),
             tasks = listOf(task.copy(id = taskId)),
         )

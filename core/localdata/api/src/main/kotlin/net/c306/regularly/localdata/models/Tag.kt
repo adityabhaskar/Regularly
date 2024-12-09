@@ -1,6 +1,7 @@
 package net.c306.regularly.localdata.models
 
 import androidx.room.Embedded
+import androidx.room.Junction
 import androidx.room.Relation
 
 /**
@@ -10,7 +11,12 @@ data class Tag(
     @Embedded val tag: TagEntity,
     @Relation(
         parentColumn = "_id",
-        entityColumn = "tagid",
+        entityColumn = "_id",
+        associateBy = Junction(
+            value = TaskAndTagEntity::class,
+            parentColumn = "tagid",
+            entityColumn = "taskid",
+        ),
     )
     val tasks: List<TaskEntity>,
 )

@@ -20,7 +20,7 @@ interface TaskDao {
      */
     @Transaction
     @Query("SELECT * FROM tags")
-    suspend fun getAllTags(): List<TagWithTasks>
+    suspend fun getAllTags(): List<Tag>
 
     /**
      * Inserts a task into the database. Returns the [TaskEntity.id] for the inserted item.
