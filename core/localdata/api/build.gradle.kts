@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.library.android)
-    alias(libs.plugins.ksp)
 }
 
 android {
@@ -13,5 +12,4 @@ detekt {
 
 dependencies {
     implementation(libs.androidx.room)
-    ksp(libs.androidx.room.compiler)
 }
