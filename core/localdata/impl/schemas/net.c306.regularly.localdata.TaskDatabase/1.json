@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "c1df54611bfcdfd70a38700bf2cb61fa",
+    "identityHash": "98658b43692b07023934e55707e27953",
     "entities": [
       {
         "tableName": "tasks",
@@ -118,7 +118,7 @@
       },
       {
         "tableName": "taskTags",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER NOT NULL, `taskid` INTEGER NOT NULL, `tagid` INTEGER NOT NULL, PRIMARY KEY(`taskid`, `tagid`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER NOT NULL, `taskid` INTEGER NOT NULL, `tagid` INTEGER NOT NULL, PRIMARY KEY(`taskid`, `tagid`), FOREIGN KEY(`taskid`) REFERENCES `tasks`(`_id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`tagid`) REFERENCES `tags`(`_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "id",
@@ -166,7 +166,30 @@
             "createSql": "CREATE INDEX IF NOT EXISTS `index_taskTags_tagid` ON `${TABLE_NAME}` (`tagid`)"
           }
         ],
-        "foreignKeys": []
+        "foreignKeys": [
+          {
+            "table": "tasks",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "taskid"
+            ],
+            "referencedColumns": [
+              "_id"
+            ]
+          },
+          {
+            "table": "tags",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "tagid"
+            ],
+            "referencedColumns": [
+              "_id"
+            ]
+          }
+        ]
       },
       {
         "tableName": "log",
@@ -232,7 +255,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c1df54611bfcdfd70a38700bf2cb61fa')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '98658b43692b07023934e55707e27953')"
     ]
   }
 }
