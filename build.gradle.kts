@@ -10,6 +10,7 @@ plugins {
     alias(libs.plugins.detekt) apply false
     alias(libs.plugins.paparazzi) apply false
     alias(libs.plugins.room) apply false
+    alias(libs.plugins.dependencyGraphs)
 
     alias(libs.plugins.application) apply false
     alias(libs.plugins.library.android) apply false
