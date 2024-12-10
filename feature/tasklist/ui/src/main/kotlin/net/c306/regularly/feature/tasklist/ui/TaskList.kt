@@ -21,8 +21,17 @@ import net.c306.regularly.core.theme.AppTheme
 import net.c306.regularly.core.utils.PreviewPhoneBothMode
 import net.c306.regularly.core.utils.PreviewTabletBothMode
 
+/**
+ * Displays a list of task items.
+ *
+ * @param items List of tasks to display
+ * @param onItemClick Callback to invoke when a task is clicked
+ * @param modifier Modifier to apply to the layout
+ * @param contentHorizontalPadding Horizontal padding to apply to the content. This is used to
+ * center content while still allowing scrolling by swiping in the empty space around it.
+ */
 @Composable
-internal fun TaskList(
+fun TaskList(
     items: ImmutableList<TaskListItem>,
     onItemClick: (id: Long) -> Unit,
     modifier: Modifier = Modifier,
