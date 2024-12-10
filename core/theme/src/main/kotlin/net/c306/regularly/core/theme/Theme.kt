@@ -240,6 +240,7 @@ private val highContrastDarkColorScheme = darkColorScheme(
     surfaceContainerHighest = surfaceContainerHighestDarkHighContrast,
 )
 
+/** Composition local for whether the app is in dark mode. */
 val LocalIsDarkMode = compositionLocalOf { false }
 
 /**

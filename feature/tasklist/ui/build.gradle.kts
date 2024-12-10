@@ -7,6 +7,10 @@ android {
     namespace = "net.c306.regularly.feature.tasklist.ui"
 }
 
+detekt {
+    baseline = file("detekt-baseline.xml")
+}
+
 dependencies {
     implementation(projects.core.theme)
 }
