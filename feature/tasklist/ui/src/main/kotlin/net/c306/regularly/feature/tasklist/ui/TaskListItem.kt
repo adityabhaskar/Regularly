@@ -7,7 +7,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import kotlinx.datetime.*
@@ -61,6 +60,7 @@ internal fun TaskListItem(
                 Text(
                     text = item.dueDate?.toRelativeString(today).orEmpty(),
                     style = MaterialTheme.typography.bodySmall,
+                    // TODO: 10/12/2024 Replace this with coloured dots maybe
                     color = item.dueDate?.toRelativeColour(today) ?: Color.Unspecified,
                 )
             }
@@ -126,18 +126,10 @@ fun LocalDate.toRelativeColour(todayOverride: LocalDate? = null): Color {
 
     val daysUntil = today.daysUntil(this)
 
-    if (daysUntil < 0) {
-        return lerp(
-            start = Color.Red,
-            stop = MaterialTheme.colorScheme.onSurface,
-            fraction = (today.daysUntil(this) + 30) / 30f,
-        )
-    } else {
-        return lerp(
-            start = MaterialTheme.colorScheme.onSurface,
-            stop = Color.Green,
-            fraction = today.daysUntil(this) / 30f,
-        )
+    return when {
+        daysUntil == 0 -> Color.Gray
+        daysUntil > 0 -> Color.Green
+        else -> Color.Red
     }
 }
 
@@ -178,6 +170,17 @@ private fun TaskListItemPreview() {
                 onClick = {},
                 modifier = Modifier.fillMaxWidth(),
                 today = LocalDate(year = 2024, monthNumber = 8, dayOfMonth = 4),
+            )
+            TaskListItem(
+                item = TaskListItem(
+                    id = 1,
+                    name = generateLoremIpsum(words = 4),
+                    description = "",
+                    dueDate = LocalDate(year = 2024, monthNumber = 8, dayOfMonth = 8),
+                ),
+                onClick = {},
+                modifier = Modifier.fillMaxWidth(),
+                today = LocalDate(year = 2024, monthNumber = 8, dayOfMonth = 8),
             )
             TaskListItem(
                 item = TaskListItem(
