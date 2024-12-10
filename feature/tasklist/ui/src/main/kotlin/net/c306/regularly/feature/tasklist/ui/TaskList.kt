@@ -66,7 +66,6 @@ private fun TaskListPreview() {
                 TaskListItem(
                     id = it.toLong(),
                     name = generateLoremIpsum(words = 4),
-                    description = generateLoremIpsum(words = 20),
                     dueDate = LocalDate(year = 2024, monthNumber = 8, dayOfMonth = 8),
                 )
             }.toPersistentList(),

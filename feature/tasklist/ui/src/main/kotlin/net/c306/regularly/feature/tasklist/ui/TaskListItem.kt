@@ -7,7 +7,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import kotlinx.datetime.*
 import kotlinx.datetime.format.MonthNames
@@ -26,7 +26,6 @@ import net.c306.regularly.core.utils.PreviewPhoneBothMode
 data class TaskListItem(
     val id: Long,
     val name: String,
-    val description: String,
     val dueDate: LocalDate?,
 )
 
@@ -45,30 +44,25 @@ internal fun TaskListItem(
             containerColor = MaterialTheme.colorScheme.surface,
         ),
     ) {
-        Column(
-            modifier = Modifier
+        Row(
+            Modifier
+                // TODO: 10/12/2024 To support compact mode, override the composition local to make
+                //  this 36dp
                 .minimumInteractiveComponentSize()
                 .padding(8.dp),
-            verticalArrangement = Arrangement.spacedBy(4.dp),
+            verticalAlignment = Alignment.CenterVertically,
         ) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(
-                    text = item.name,
-                    style = MaterialTheme.typography.bodyLarge,
-                )
-                Spacer(modifier = Modifier.weight(1f))
-                Text(
-                    text = item.dueDate?.toRelativeString(today).orEmpty(),
-                    style = MaterialTheme.typography.bodySmall,
-                    // TODO: 10/12/2024 Replace this with coloured dots maybe
-                    color = item.dueDate?.toRelativeColour(today) ?: Color.Unspecified,
-                )
-            }
             Text(
-                text = item.description,
+                text = item.name,
+                style = MaterialTheme.typography.bodyLarge,
+            )
+            Spacer(modifier = Modifier.weight(1f))
+            Text(
+                text = item.dueDate?.toRelativeString(today).orEmpty(),
                 style = MaterialTheme.typography.bodySmall,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
+                // TODO: 10/12/2024 Replace this with coloured dots maybe
+
+                color = item.dueDate?.toRelativeColour(today) ?: Color.Unspecified,
             )
         }
     }
@@ -121,7 +115,7 @@ private val OtherDateFormat = LocalDate.Format {
 }
 
 @Composable
-fun LocalDate.toRelativeColour(todayOverride: LocalDate? = null): Color {
+private fun LocalDate.toRelativeColour(todayOverride: LocalDate? = null): Color {
     val today = todayOverride ?: Clock.System.todayIn(TimeZone.currentSystemDefault())
 
     val daysUntil = today.daysUntil(this)
@@ -142,7 +136,6 @@ private fun TaskListItemPreview() {
                 item = TaskListItem(
                     id = 1,
                     name = generateLoremIpsum(words = 4),
-                    description = generateLoremIpsum(words = 20),
                     dueDate = LocalDate(year = 2024, monthNumber = 8, dayOfMonth = 8),
                 ),
                 onClick = {},
@@ -153,7 +146,6 @@ private fun TaskListItemPreview() {
                 item = TaskListItem(
                     id = 1,
                     name = generateLoremIpsum(words = 4),
-                    description = "",
                     dueDate = LocalDate(year = 2024, monthNumber = 8, dayOfMonth = 8),
                 ),
                 onClick = {},
@@ -164,7 +156,6 @@ private fun TaskListItemPreview() {
                 item = TaskListItem(
                     id = 1,
                     name = generateLoremIpsum(words = 4),
-                    description = "",
                     dueDate = LocalDate(year = 2024, monthNumber = 8, dayOfMonth = 8),
                 ),
                 onClick = {},
@@ -175,7 +166,6 @@ private fun TaskListItemPreview() {
                 item = TaskListItem(
                     id = 1,
                     name = generateLoremIpsum(words = 4),
-                    description = "",
                     dueDate = LocalDate(year = 2024, monthNumber = 8, dayOfMonth = 8),
                 ),
                 onClick = {},
@@ -186,7 +176,6 @@ private fun TaskListItemPreview() {
                 item = TaskListItem(
                     id = 1,
                     name = generateLoremIpsum(words = 4),
-                    description = "",
                     dueDate = LocalDate(year = 2024, monthNumber = 8, dayOfMonth = 8),
                 ),
                 onClick = {},
@@ -197,7 +186,6 @@ private fun TaskListItemPreview() {
                 item = TaskListItem(
                     id = 1,
                     name = generateLoremIpsum(words = 4),
-                    description = "",
                     dueDate = LocalDate(year = 2024, monthNumber = 8, dayOfMonth = 8),
                 ),
                 onClick = {},
@@ -208,7 +196,6 @@ private fun TaskListItemPreview() {
                 item = TaskListItem(
                     id = 1,
                     name = generateLoremIpsum(words = 4),
-                    description = "",
                     dueDate = LocalDate(year = 2024, monthNumber = 8, dayOfMonth = 8),
                 ),
                 onClick = {},
