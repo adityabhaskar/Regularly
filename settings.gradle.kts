@@ -30,4 +30,5 @@ include(
     ":core:models",
     ":core:localdata:api",
     ":core:localdata:impl",
+    ":feature:tasklist:ui",
 )
