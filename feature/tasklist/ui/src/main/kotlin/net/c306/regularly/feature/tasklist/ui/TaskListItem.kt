@@ -5,10 +5,14 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import kotlinx.datetime.*
+import kotlinx.datetime.format.MonthNames
+import kotlinx.datetime.format.char
 import net.c306.regularly.core.theme.AppTheme
 import net.c306.regularly.core.utils.PreviewPhoneBothMode
 
@@ -57,6 +61,7 @@ internal fun TaskListItem(
                 Text(
                     text = item.dueDate?.toRelativeString(today).orEmpty(),
                     style = MaterialTheme.typography.bodySmall,
+                    color = item.dueDate?.toRelativeColour(today) ?: Color.Unspecified,
                 )
             }
             Text(
@@ -73,14 +78,66 @@ internal fun TaskListItem(
 private fun LocalDate.toRelativeString(todayOverride: LocalDate? = null): String {
     val today = todayOverride ?: Clock.System.todayIn(TimeZone.currentSystemDefault())
     return when {
-        today == this -> "Today"
-        today.daysUntil(this) == 1 -> "Tomorrow"
-        today.daysUntil(this) == -1 -> "Yesterday"
-        today.monthsUntil(this) in -1..<0 -> "${this.daysUntil(today)} days ago"
-        today.yearsUntil(this) in -1..<0 -> "${this.monthsUntil(today)} months ago"
-        today.monthsUntil(this) in 0..<1 -> "in ${today.daysUntil(this)} days"
-        today.yearsUntil(this) in 0..<1 -> "in ${today.monthsUntil(this)} months"
-        else -> this.toString()
+        today == this -> {
+            "Today"
+        }
+
+        today.daysUntil(this) == 1 -> {
+            "Tomorrow"
+        }
+
+        today.daysUntil(this) == -1 -> {
+            "Yesterday"
+        }
+
+        today.monthsUntil(this) == 0 && today.daysUntil(this) < 0 -> {
+            "${this.daysUntil(today)} days ago"
+        }
+
+        today.yearsUntil(this) == 0 && today.monthsUntil(this) < 0 -> {
+            "${this.monthsUntil(today)} months ago"
+        }
+
+        today.monthsUntil(this) == 0 && today.daysUntil(this) > 0 -> {
+            "in ${today.daysUntil(this)} days"
+        }
+
+        today.yearsUntil(this) == 0 && today.monthsUntil(this) > 0 -> {
+            "in ${today.monthsUntil(this)} months"
+        }
+
+        else -> {
+            this.format(OtherDateFormat)
+        }
+    }
+}
+
+private val OtherDateFormat = LocalDate.Format {
+    monthName(MonthNames.ENGLISH_ABBREVIATED)
+    char(' ')
+    dayOfMonth()
+    chars(", ")
+    year()
+}
+
+@Composable
+fun LocalDate.toRelativeColour(todayOverride: LocalDate? = null): Color {
+    val today = todayOverride ?: Clock.System.todayIn(TimeZone.currentSystemDefault())
+
+    val daysUntil = today.daysUntil(this)
+
+    if (daysUntil < 0) {
+        return lerp(
+            start = Color.Red,
+            stop = MaterialTheme.colorScheme.onSurface,
+            fraction = (today.daysUntil(this) + 30) / 30f,
+        )
+    } else {
+        return lerp(
+            start = MaterialTheme.colorScheme.onSurface,
+            stop = Color.Green,
+            fraction = today.daysUntil(this) / 30f,
+        )
     }
 }
 
@@ -94,22 +151,66 @@ private fun TaskListItemPreview() {
                     id = 1,
                     name = generateLoremIpsum(words = 4),
                     description = generateLoremIpsum(words = 20),
-                    dueDate = LocalDate(year = 2023, monthNumber = 1, dayOfMonth = 1),
+                    dueDate = LocalDate(year = 2024, monthNumber = 8, dayOfMonth = 8),
                 ),
                 onClick = {},
                 modifier = Modifier.fillMaxWidth(),
-                today = LocalDate(year = 2022, monthNumber = 1, dayOfMonth = 2),
+                today = LocalDate(year = 2023, monthNumber = 1, dayOfMonth = 2),
             )
             TaskListItem(
                 item = TaskListItem(
                     id = 1,
                     name = generateLoremIpsum(words = 4),
                     description = "",
-                    dueDate = LocalDate(year = 2023, monthNumber = 1, dayOfMonth = 1),
+                    dueDate = LocalDate(year = 2024, monthNumber = 8, dayOfMonth = 8),
                 ),
                 onClick = {},
                 modifier = Modifier.fillMaxWidth(),
-                today = LocalDate(year = 2022, monthNumber = 12, dayOfMonth = 2),
+                today = LocalDate(year = 2023, monthNumber = 12, dayOfMonth = 12),
+            )
+            TaskListItem(
+                item = TaskListItem(
+                    id = 1,
+                    name = generateLoremIpsum(words = 4),
+                    description = "",
+                    dueDate = LocalDate(year = 2024, monthNumber = 8, dayOfMonth = 8),
+                ),
+                onClick = {},
+                modifier = Modifier.fillMaxWidth(),
+                today = LocalDate(year = 2024, monthNumber = 8, dayOfMonth = 4),
+            )
+            TaskListItem(
+                item = TaskListItem(
+                    id = 1,
+                    name = generateLoremIpsum(words = 4),
+                    description = "",
+                    dueDate = LocalDate(year = 2024, monthNumber = 8, dayOfMonth = 8),
+                ),
+                onClick = {},
+                modifier = Modifier.fillMaxWidth(),
+                today = LocalDate(year = 2024, monthNumber = 8, dayOfMonth = 12),
+            )
+            TaskListItem(
+                item = TaskListItem(
+                    id = 1,
+                    name = generateLoremIpsum(words = 4),
+                    description = "",
+                    dueDate = LocalDate(year = 2024, monthNumber = 8, dayOfMonth = 8),
+                ),
+                onClick = {},
+                modifier = Modifier.fillMaxWidth(),
+                today = LocalDate(year = 2024, monthNumber = 12, dayOfMonth = 12),
+            )
+            TaskListItem(
+                item = TaskListItem(
+                    id = 1,
+                    name = generateLoremIpsum(words = 4),
+                    description = "",
+                    dueDate = LocalDate(year = 2024, monthNumber = 8, dayOfMonth = 8),
+                ),
+                onClick = {},
+                modifier = Modifier.fillMaxWidth(),
+                today = LocalDate(year = 2025, monthNumber = 9, dayOfMonth = 12),
             )
         }
     }
