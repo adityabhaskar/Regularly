@@ -36,7 +36,7 @@ allprojects {
             targetExclude("**/build/**/*.kt")
             ktlint(libs.versions.ktlint.get())
                 .customRuleSets(
-                    listOf("io.nlopez.compose.rules:ktlint:0.4.20"),
+                    listOf("io.nlopez.compose.rules:ktlint:0.4.22"),
                 )
         }
         kotlinGradle {
@@ -44,7 +44,7 @@ allprojects {
             targetExclude("**/build/**/*.kts")
             ktlint(libs.versions.ktlint.get())
                 .customRuleSets(
-                    listOf("io.nlopez.compose.rules:ktlint:0.4.20"),
+                    listOf("io.nlopez.compose.rules:ktlint:0.4.22"),
                 )
         }
         format("xml") {
