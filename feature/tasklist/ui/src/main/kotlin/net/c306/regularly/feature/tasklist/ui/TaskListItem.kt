@@ -73,31 +73,31 @@ private fun LocalDate.toRelativeString(todayOverride: LocalDate? = null): String
     val today = todayOverride ?: Clock.System.todayIn(TimeZone.currentSystemDefault())
     return when {
         today == this -> {
-            "Today"
+            stringResource(R.string.date_relative_today)
         }
 
         today.daysUntil(this) == 1 -> {
-            "Tomorrow"
+            stringResource(R.string.date_relative_tomorrow)
         }
 
         today.daysUntil(this) == -1 -> {
-            "Yesterday"
+            stringResource(R.string.date_relative_yesterday)
         }
 
         today.monthsUntil(this) == 0 && today.daysUntil(this) < 0 -> {
-            "${this.daysUntil(today)} days ago"
+            stringResource(R.string.date_relative_days_in_past, this.daysUntil(today))
         }
 
         today.yearsUntil(this) == 0 && today.monthsUntil(this) < 0 -> {
-            "${this.monthsUntil(today)} months ago"
+            stringResource(R.string.date_relative_months_in_past, this.monthsUntil(today))
         }
 
         today.monthsUntil(this) == 0 && today.daysUntil(this) > 0 -> {
-            "in ${today.daysUntil(this)} days"
+            stringResource(R.string.date_relative_days_in_future, today.daysUntil(this))
         }
 
         today.yearsUntil(this) == 0 && today.monthsUntil(this) > 0 -> {
-            "in ${today.monthsUntil(this)} months"
+            stringResource(R.string.date_relative_months_in_future, today.monthsUntil(this))
         }
 
         else -> {
