@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="date_relative_today">Today</string>
+    <string name="date_relative_tomorrow">Tomorrow</string>
+    <string name="date_relative_yesterday">Yesterday</string>
+    <string name="date_relative_days_in_past">%1$s days ago</string>
+    <string name="date_relative_months_in_past">%1$s months ago</string>
+    <string name="date_relative_days_in_future">in %1$s days</string>
+    <string name="date_relative_months_in_future">in %1$s months</string>
+</resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>MagicNumber:TaskListItem.kt$2</ID>
+    <ID>MagicNumber:TaskListItem.kt$5</ID>
+  </CurrentIssues>
+</SmellBaseline>
