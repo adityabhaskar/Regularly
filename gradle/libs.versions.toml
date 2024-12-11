@@ -27,7 +27,7 @@ testparameterinjector = "1.18"
 paparazzi = "1.3.5"
 
 spotless = "7.0.0.BETA4"
-lint-gradle = "1.0.0-alpha02"
+lint-gradle = "1.0.0-alpha03"
 detekt = "1.23.7"
 dependency-graphs = "0.1.6"
 
