@@ -11,7 +11,7 @@ ktlint = "1.5.0"
 
 core = "1.15.0"
 lifecycle-runtime = "2.8.7"
-activityCompose = "1.9.3"
+activityCompose = "1.10.0"
 compose = "2024.12.01"
 kotlinx-collections-immutable = "0.3.8"
 kotlinx-datetime = "0.6.1"
