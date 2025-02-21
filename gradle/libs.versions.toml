@@ -28,7 +28,7 @@ paparazzi = "1.3.5"
 
 spotless = "7.0.2"
 lint-gradle = "1.0.0-alpha03"
-detekt = "1.23.7"
+detekt = "1.23.8"
 dependency-graphs = "0.1.6"
 
 conventions = "1.0"
