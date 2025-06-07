@@ -1,4 +1,4 @@
-name: Lint
+name: Checks
 on:
   pull_request:
   push:
@@ -27,11 +27,16 @@ jobs:
         with:
           gradle-version: wrapper
 
-      - name: Run checks
-        run: ./gradlew spotlessCheck lint detekt
-
       - name: Build debug
-        run: ./gradlew assembleDebug assembleDebugAndroidTest
+        run: ./gradlew assembleDebug assembleDebugAndroidTest  --continue
+
+      - name: Detekt
+        run: ./gradlew detekt --continue
+
+      - name: Lint
+        if: success() || failure()
+        run: ./gradlew spotlessCheck lint --continue
 
       - name: Run tests
-        run: ./gradlew testDebugUnitTest
+        if: success() || failure()
+        run: ./gradlew testDebugUnitTest --continue
