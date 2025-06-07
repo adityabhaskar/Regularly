@@ -13,13 +13,6 @@ plugins {
     alias(libs.plugins.paparazzi) apply false
     alias(libs.plugins.room) apply false
     alias(libs.plugins.dependencyGraphs)
-
-    alias(libs.plugins.application) apply false
-    alias(libs.plugins.library.android) apply false
-    alias(libs.plugins.library.kotlin) apply false
-    alias(libs.plugins.compose.application) apply false
-    alias(libs.plugins.compose.library) apply false
-    alias(libs.plugins.hilt) apply false
 }
 
 allprojects {

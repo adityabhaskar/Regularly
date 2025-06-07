@@ -20,7 +20,7 @@ internal interface DatabaseModule {
             klass = TaskDatabase::class.java,
             name = "database-name",
         )
-            .fallbackToDestructiveMigration()
+            .fallbackToDestructiveMigration(dropAllTables = true)
             .build()
     }
 }
