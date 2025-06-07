@@ -2,11 +2,7 @@ package net.c306.conventions.plugins
 
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import com.android.build.gradle.LibraryExtension
-import net.c306.conventions.shared.configureAndroidModule
-import net.c306.conventions.shared.configureAndroidTests
-import net.c306.conventions.shared.hasTestFixtures
-import net.c306.conventions.shared.libs
-import net.c306.conventions.shared.setupDetekt
+import net.c306.conventions.shared.*
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -43,14 +39,19 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
             }
 
             extensions.configure<LibraryAndroidComponentsExtension> {
-                beforeVariants {
-                    it.enableTestFixtures = hasTestFixtures()
+                beforeVariants { variantBuilder ->
+                    variantBuilder.enableTestFixtures = hasTestFixtures()
                     // Disable unnecessary Android instrumented tests for the project if there are no
                     // tests in the `androidTest` folder. Otherwise, these projects would be compiled,
                     // packaged, installed and run only to end-up with the following message:
                     //
                     // > Starting 0 tests on AVD
-                    it.enableAndroidTest = shouldSetupAndroidTests
+                    variantBuilder.enableAndroidTest = shouldSetupAndroidTests
+
+                    if (variantBuilder.buildType != "debug") {
+                        // Disable non-debug variants in libraries
+                        variantBuilder.enable = false
+                    }
                 }
             }
         }
