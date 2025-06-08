@@ -7,8 +7,8 @@ import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.api.plugins.JavaPlugin
 import org.gradle.kotlin.dsl.*
 import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinBaseExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
-import org.jetbrains.kotlin.gradle.dsl.KotlinTopLevelExtension
 
 /**
  * The Version Catalog.
@@ -19,7 +19,7 @@ internal val Project.libs
 /**
  * Sets up core config for all Android modules - application and library.
  */
-internal inline fun <reified T : KotlinTopLevelExtension> Project.configureAndroidModule(
+internal inline fun <reified T : KotlinBaseExtension> Project.configureAndroidModule(
     extension: CommonExtension<*, *, *, *, *, *>,
 ) {
     extension.apply {
@@ -37,7 +37,7 @@ internal fun Project.isJvmModule() = plugins.isNotEmpty() && plugins.any { it is
 /**
  * Adds the base dependencies that every module needs.
  */
-internal inline fun <reified T : KotlinTopLevelExtension> Project.addBaseDependencies() {
+internal inline fun <reified T : KotlinBaseExtension> Project.addBaseDependencies() {
     dependencies {
         add("implementation", libs.findLibrary("kotlin.stdlib").get())
         add("implementation", libs.findLibrary("javax.inject").get())
@@ -76,7 +76,7 @@ internal inline fun <reified T : KotlinTopLevelExtension> Project.addBaseDepende
     setupKotlinCompilerOptions<T>()
 }
 
-private inline fun <reified T : KotlinTopLevelExtension> Project.setupKotlinCompilerOptions() =
+private inline fun <reified T : KotlinBaseExtension> Project.setupKotlinCompilerOptions() =
     configure<T> {
         when (this) {
             is KotlinAndroidProjectExtension -> compilerOptions

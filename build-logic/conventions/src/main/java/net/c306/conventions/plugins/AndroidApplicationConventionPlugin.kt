@@ -26,6 +26,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
             with(pluginManager) {
                 apply(libs.findPlugin("agp.application").get().get().pluginId)
                 apply(libs.findPlugin("kgp.android").get().get().pluginId)
+                apply(libs.findPlugin("kotlin.serialization").get().get().pluginId)
             }
 
             setupDetekt()

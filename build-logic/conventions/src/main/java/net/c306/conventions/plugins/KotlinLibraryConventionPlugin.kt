@@ -22,6 +22,7 @@ class KotlinLibraryConventionPlugin : Plugin<Project> {
             with(pluginManager) {
                 apply(libs.findPlugin("kgp.jvm").get().get().pluginId)
                 apply(libs.findPlugin("android.lint").get().get().pluginId)
+                apply(libs.findPlugin("kotlin.serialization").get().get().pluginId)
 
                 setupDetekt()
 

@@ -9,16 +9,18 @@ kotlin = "2.1.21"
 ksp = "2.1.21-2.0.1"
 ktlint = "1.5.0"
 
-core = "1.16.0"
-lifecycle-runtime = "2.9.1"
 activityCompose = "1.10.1"
+androidx-hilt = "1.2.0"
 compose = "2025.06.00"
+core = "1.16.0"
+coroutines = "1.10.2"
+google-hilt = "2.56.2"
 kotlinx-collections-immutable = "0.4.0"
 kotlinx-datetime = "0.6.2"
-androidx-hilt = "1.2.0"
-google-hilt = "2.56.2"
+lifecycle-runtime = "2.9.1"
+lifecycle-viewmodel-nav3 = "1.0.0-alpha01"
+nav3-core = "1.0.0-alpha01"
 room = "2.7.1"
-coroutines = "1.10.2"
 
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -30,6 +32,7 @@ spotless = "7.0.4"
 lint-gradle = "1.0.0-alpha05"
 detekt = "1.23.8"
 dependency-graphs = "0.1.6"
+kotlin-serialization = "2.1.21"
 
 conventions = "1.0"
 
@@ -49,6 +52,9 @@ androidx-compose-material3 = { group = "androidx.compose.material3", name = "mat
 androidx-compose-material3-windowSize = { group = "androidx.compose.material3", name = "material3-window-size-class" }
 androidx-hilt-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "androidx-hilt" }
 androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "androidx-hilt" }
+androidx-navigation3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3-core" }
+androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3-core" }
+androidx-lifecycle-viewmodel-navigation3 = { module = "androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "lifecycle-viewmodel-nav3" }
 androidx-room = { module = "androidx.room:room-runtime", version.ref = "room" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 androidx-room-test = { module = "androidx.room:room-testing", version.ref = "room" }
@@ -90,6 +96,7 @@ google-hilt = { id = "com.google.dagger.hilt.android", version.ref = "google-hil
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 paparazzi = { id = "app.cash.paparazzi", version.ref = "paparazzi" }
 room = { id = "androidx.room", version.ref = "room" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin-serialization" }
 
 android-lint = { id = "com.android.lint", version.ref = "agp" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
