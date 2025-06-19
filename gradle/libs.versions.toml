@@ -11,7 +11,7 @@ ktlint = "1.5.0"
 
 activityCompose = "1.10.1"
 androidx-hilt = "1.2.0"
-compose = "2025.06.00"
+compose = "2025.06.01"
 core = "1.16.0"
 coroutines = "1.10.2"
 google-hilt = "2.56.2"
