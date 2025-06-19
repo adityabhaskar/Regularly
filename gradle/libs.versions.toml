@@ -20,7 +20,7 @@ kotlinx-datetime = "0.6.2"
 lifecycle-runtime = "2.9.1"
 lifecycle-viewmodel-nav3 = "1.0.0-alpha02"
 nav3-core = "1.0.0-alpha04"
-room = "2.7.1"
+room = "2.7.2"
 
 junit = "4.13.2"
 junitVersion = "1.2.1"
