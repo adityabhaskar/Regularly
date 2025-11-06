@@ -6,7 +6,7 @@ compileSdk = "36"
 minSdk = "29"
 
 kotlin = "2.2.21"
-ksp = "2.2.21-2.0.4"
+ksp = "2.3.0"
 ktlint = "1.5.0"
 
 activityCompose = "1.11.0"
