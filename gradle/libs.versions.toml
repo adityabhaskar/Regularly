@@ -29,7 +29,7 @@ testparameterinjector = "1.22"
 paparazzi = "1.3.5"
 
 spotless = "7.2.1"
-lint-gradle = "1.0.0-beta01"
+lint-gradle = "1.0.0-rc01"
 detekt = "1.23.8"
 dependency-graphs = "0.1.6"
 kotlin-serialization = "2.3.21"
