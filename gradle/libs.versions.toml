@@ -32,7 +32,7 @@ spotless = "7.2.1"
 lint-gradle = "1.0.0"
 detekt = "1.23.8"
 dependency-graphs = "0.1.6"
-kotlin-serialization = "2.3.21"
+kotlin-serialization = "2.4.0"
 
 conventions = "1.0"
 
